@@ -6,7 +6,7 @@ import {
 } from "react-social-login-buttons";
 import "../../style/Login.css";
 
-class Login extends Component {
+class SignUp extends Component {
   render() {
     return (
       <div className="container-login">
@@ -39,4 +39,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default SignUp;

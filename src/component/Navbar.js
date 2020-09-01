@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { Button } from "./Button";
 import { Link } from "react-router-dom";
 import "../style/Navbar.css";
-import { Button } from "./Button";
 
 function Navbar() {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
 
   const handleClick = () => setClick(!click);
-  const closeMobileMenu = () => setClick(click);
+  const closeMobileMenu = () => setClick(false);
 
   const showButton = () => {
     if (window.innerWidth <= 960) {
@@ -25,11 +25,11 @@ function Navbar() {
   window.addEventListener("resize", showButton);
 
   return (
-    <div>
+    <>
       <nav className="navbar">
         <div className="navbar-container">
           <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
-            PLAY UP ! <i className="fab fa-typo3"></i>
+            PLAY UP!
           </Link>
           <div className="menu-icon" onClick={handleClick}>
             <i className={click ? "fas fa-times" : "fas fa-bars"} />
@@ -46,19 +46,20 @@ function Navbar() {
                 className="nav-links"
                 onClick={closeMobileMenu}
               >
-                Services
+                Fitur
               </Link>
             </li>
             <li className="nav-item">
               <Link
-                to="/products"
+                to="/category"
                 className="nav-links"
                 onClick={closeMobileMenu}
               >
-                Products
+                Kategori
               </Link>
             </li>
-            <li className="nav-item">
+
+            <li>
               <Link
                 to="/sign-up"
                 className="nav-links-mobile"
@@ -68,10 +69,10 @@ function Navbar() {
               </Link>
             </li>
           </ul>
-          {button && <Button buttonStyle="btn--outline">SIGN UP</Button>}
+          {button && <Button buttonStyle="btn--outline">Masuk</Button>}
         </div>
       </nav>
-    </div>
+    </>
   );
 }
 

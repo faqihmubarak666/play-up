@@ -1,0 +1,9 @@
+.container_category {
+  background-color: #f2f2f2;
+  min-height: 645px;
+}
+
+img {
+  display: block;
+  margin: auto;
+}

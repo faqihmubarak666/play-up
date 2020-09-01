@@ -1,24 +1,26 @@
 import React from "react";
-import CardItem from "./CardItem";
 import "../style/Cards.css";
+import CardItem from "./CardItem";
+import FiturChat from "../image/undraw_chatting_2yvo(1).svg";
+import SearchPeople from "../image/undraw_people_search_wctu.svg";
 
 function Cards() {
   return (
     <div className="cards">
-      <h1>Check out those EPIC Destinations</h1>
+      <h1>Fitur Aplikasi Play Up!</h1>
       <div className="cards__container">
-        <div className="cards_wrapper">
-          <ul className="crads__items">
+        <div className="cards__wrapper">
+          <ul className="cards__items">
             <CardItem
-              src="images/img-9.jpg"
+              src={FiturChat}
               text="Explore the hidden waterfall deep inside the Amazon Jungle"
-              labels="Adventure"
+              label="Chat"
               path="/services"
             />
             <CardItem
-              src="images/img-2.jpg"
-              text="Travel through the Islands of bali in a Private Cruise"
-              labels="Luxury"
+              src={SearchPeople}
+              text="Travel through the Islands of Bali in a Private Cruise"
+              label="Mencari lawan"
               path="/services"
             />
           </ul>
@@ -33,13 +35,13 @@ function Cards() {
               src="images/img-4.jpg"
               text="Experience Football on Top of the Himilayan Mountains"
               label="Adventure"
-              path="/products"
+              path="/category"
             />
             <CardItem
               src="images/img-8.jpg"
               text="Ride through the Sahara Desert on a guided camel tour"
               label="Adrenaline"
-              path="/login"
+              path="/sign-up"
             />
           </ul>
         </div>

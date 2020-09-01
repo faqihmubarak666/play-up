@@ -1,26 +1,27 @@
 import React from "react";
-import Header from "./component/Header";
-import Login from "./component/pages/Login";
 import Navbar from "./component/Navbar";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import "./App.css";
+// import "./App.css";
 import Home from "./component/pages/Home";
-import Products from "./component/pages/Products";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Services from "./component/pages/Services";
+import Category from "./component/pages/Category";
+import SignUp from "./component/pages/SignUp";
+import Header from "./component/Header";
 
 function App() {
   return (
-    <div>
+    <>
       <Router>
+        {/* <Header /> */}
         <Navbar />
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/services" exact component={Services} />
-          <Route path="/products" exact component={Products} />
-          <Route path="/login" exact component={Login} />
+          <Route path="/services" component={Services} />
+          <Route path="/category" component={Category} />
+          <Route path="/sign-up" component={SignUp} />
         </Switch>
       </Router>
-    </div>
+    </>
   );
 }
 

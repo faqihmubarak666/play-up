@@ -1,0 +1,20 @@
+.description {
+  margin: auto;
+}
+
+h1 {
+  font-size: 50px;
+  text-align: justify;
+  justify-content: center;
+}
+p {
+  font-size: 20px;
+  text-align: justify;
+  justify-content: center;
+  color: grey;
+}
+
+img {
+  width: 500px;
+  height: 500px;
+}

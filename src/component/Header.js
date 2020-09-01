@@ -8,7 +8,7 @@ export class Header extends Component {
       <div>
         <BrowserRouter>
           <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="/">
               PLAY UP!
             </a>
             <button
@@ -25,39 +25,29 @@ export class Header extends Component {
             <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav">
                 <li class="nav-item active">
-                  <a class="nav-link" href="#">
-                    Home <span class="sr-only">(current)</span>
+                  <a class="nav-link" href="/">
+                    Home
+                    {/* <span class="sr-only">(current)</span> */}
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">
-                    Features
+                  <a class="nav-link" href="/services">
+                    Services
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">
-                    Pricing
+                  <a class="nav-link" href="/category">
+                    Category
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a
-                    class="nav-link disabled"
-                    href="#"
-                    tabindex="-1"
-                    aria-disabled="true"
-                  >
-                    Disabled
+                  <a class="nav-link" href="/sign-up">
+                    Masuk
                   </a>
                 </li>
               </ul>
             </div>
           </nav>
-          {/* <Switch>
-            <Route path="/" exact component={JumbotronComponent} />
-            <Route path="/User" component={ContainerUser} />
-            <Route path="/Tag" component={ContainerTags} />
-            <Route path="/Post" component={ContainerComment} />
-          </Switch> */}
         </BrowserRouter>
       </div>
     );
