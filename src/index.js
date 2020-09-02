@@ -7,18 +7,18 @@ import "bootstrap/dist/css/bootstrap.min.css";
 // import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
 import { Router } from "react-router-dom";
 import { createBrowserHistory } from "history";
-// import { Provider } from "react-redux";
-// import { store } from "./redux/store-config/store";
+import { Provider } from "react-redux";
+import { store } from "./redux/store-config/Store";
 
 const customHistory = createBrowserHistory();
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <Provider store={store}> */}
-    <Router history={customHistory}>
-      <App />
-    </Router>
-    {/* </Provider> */}
+    <Provider store={store}>
+      <Router history={customHistory}>
+        <App />
+      </Router>
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );
