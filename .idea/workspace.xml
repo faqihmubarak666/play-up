@@ -20,7 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0b5b1ddf-56f8-42cd-8944-c22255626fb6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,6 +68,7 @@
       <workItem from="1598974623271" duration="608000" />
       <workItem from="1599056979472" duration="53000" />
       <workItem from="1599057052349" duration="1052000" />
+      <workItem from="1599099288832" duration="1468000" />
     </task>
     <servers />
   </component>
@@ -102,5 +104,17 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="1398" height="231" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1599097258320" />
+    <state x="144" y="100" key="MergeDialog" timestamp="1599110950136">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="144" y="100" key="MergeDialog/0.23.1440.877@0.23.1440.877" timestamp="1599110950136" />
+    <state x="358" y="230" key="MultipleFileMergeDialog" timestamp="1599110950165">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="358" y="230" key="MultipleFileMergeDialog/0.23.1440.877@0.23.1440.877" timestamp="1599110950165" />
+    <state x="320" y="201" key="Vcs.Push.Dialog.v2" timestamp="1599110904768">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="320" y="201" key="Vcs.Push.Dialog.v2/0.23.1440.877@0.23.1440.877" timestamp="1599110904768" />
   </component>
 </project>
