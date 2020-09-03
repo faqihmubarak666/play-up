@@ -5,9 +5,10 @@ import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
 import Home from "../pages/landingPage/Home";
 import Services from "../pages/landingPage/Services";
 import Category from "../pages/landingPage/Category";
-import SignUp from "../pages/landingPage/signUp/SignUp";
+import SignIn from "../pages/landingPage/signUp/SignIn";
+import SideBar from "./SideBar";
 
-function Navbar() {
+function Navbar(props) {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
 
@@ -27,6 +28,11 @@ function Navbar() {
   }, []);
 
   window.addEventListener("resize", showButton);
+
+  // const { adminPage } = props;
+  // if (adminPage) {
+  //   return <SideBar />;
+  // }
 
   return (
     <>
@@ -73,7 +79,7 @@ function Navbar() {
                   className="nav-links-mobile"
                   onClick={closeMobileMenu}
                 >
-                  Sign Up
+                  Sign In
                 </Link>
               </li>
             </ul>
@@ -84,7 +90,7 @@ function Navbar() {
           <Route path="/" exact component={Home} />
           <Route path="/features" component={Services} />
           <Route path="/category" component={Category} />
-          <Route path="/sign-in" component={SignUp} />
+          <Route path="/sign-in" component={SignIn} />
         </Switch>
       </BrowserRouter>
     </>

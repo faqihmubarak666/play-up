@@ -41,7 +41,7 @@ export class Header extends Component {
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/sign-up">
+                  <a class="nav-link" href="/sign-in">
                     Masuk
                   </a>
                 </li>

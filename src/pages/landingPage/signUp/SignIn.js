@@ -7,9 +7,11 @@ import {
 import "../../../style/Login.css";
 import swal from "sweetalert";
 import SideBar from "../../../component/SideBar";
-import { login } from "./ServiceSignUp";
+import Navbar from "../../../component/Navbar";
+import { login } from "./ServiceSignIn";
+import { Link } from "react-router-dom";
 
-class SignUp extends Component {
+class SignIn extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -49,10 +51,10 @@ class SignUp extends Component {
             console.log("response login", response);
             // sessionStorage.setItem("token", response.result);
             this.setState({
-              adminPage: true,
+              adminPage: !this.state.adminPage,
             });
             this.props.history.push({
-              pathname: "/",
+              pathname: "/admin",
             });
             swal("Login Success", "You clicked the button!", "success");
           } else {
@@ -91,13 +93,15 @@ class SignUp extends Component {
               onChange={(event) => this.handleChangeInput(event)}
             />
           </FormGroup>
-          <Button
-            className="btn-lg btn-dark btn-block"
-            onClick={this.getDataUser}
-            style={{ backgroundColor: "#2c3c5b" }}
-          >
-            Masuk
-          </Button>
+          <Link to="/admin">
+            <Button
+              className="btn-lg btn-dark btn-block"
+              onClick={this.getDataUser}
+              style={{ backgroundColor: "#2c3c5b" }}
+            >
+              Masuk
+            </Button>
+          </Link>
           <div className="text-center pt-3">atau</div>
           <FacebookLoginButton className="mt-3 mb-3" />
           <GoogleLoginButton className="mt-3 mb-3" />
@@ -106,9 +110,10 @@ class SignUp extends Component {
             <a href="/register">Buat akun</a>
           </div>
         </Form>
+        {/* <Navbar adminPage={this.state.adminPage} />; */}
       </div>
     );
   }
 }
 
-export default SignUp;
+export default SignIn;

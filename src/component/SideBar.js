@@ -85,7 +85,7 @@ export class SideBar extends Component {
              with font-awesome or any other icon font library */}
                   <li className="nav-item has-treeview menu-open">
                     <Link
-                      to="/"
+                      to="/admin"
                       className="nav-links"
                       style={{ color: "white" }}
                     >
@@ -120,7 +120,7 @@ export class SideBar extends Component {
             {/* /.sidebar */}
           </aside>
           <Switch>
-            <Route path="/" exact component={UserContainer} />
+            <Route path="/admin" exact component={UserContainer} />
             <Route path="/match-schedule" component={UserContainer} />
             <Route path="/logout" component={Navbar} />
           </Switch>
