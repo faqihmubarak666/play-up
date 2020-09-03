@@ -12,20 +12,9 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Router>
-          {/* <Navbar /> */}
-          <SideBar />
-          <Switch>
-            <Route path="/" exact component={Home} />
-            <Route path="/services" component={Services} />
-            <Route path="/category" component={Category} />
-            <Route path="/sign-up" component={SignUp} />
-
-            <Route path="/all-user" component={UserContainer} />
-            <Route path="/match-schedule" component={Services} />
-            <Route path="/logout" component={Navbar} />
-          </Switch>
-        </Router>
+        {/* <Navbar /> */}
+        <SideBar />
+        {/* <SignUp /> */}
       </div>
     );
   }

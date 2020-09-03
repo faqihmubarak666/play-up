@@ -43,7 +43,7 @@ class SignUp extends Component {
     } else {
       swal("Login Success", "You clicked the button!", "success");
       this.props.history.push({
-        pathname: "/all-user",
+        pathname: "/",
       });
       this.setState({
         adminPage: true,
