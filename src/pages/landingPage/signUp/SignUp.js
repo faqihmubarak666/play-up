@@ -4,9 +4,10 @@ import {
   FacebookLoginButton,
   GoogleLoginButton,
 } from "react-social-login-buttons";
-import "../../style/Login.css";
+import "../../../style/Login.css";
 import swal from "sweetalert";
-import SideBar from "../../component/SideBar";
+import SideBar from "../../../component/SideBar";
+import { login } from "./ServiceSignUp";
 
 class SignUp extends Component {
   constructor(props) {
@@ -38,15 +39,24 @@ class SignUp extends Component {
       this.setState({
         passwordInvalid: "Invalid password !",
       });
-    } else if (this.state.username !== "123" && this.state.password !== "123") {
-      swal("Login Invalid", "You clicked the button!", "error");
     } else {
-      swal("Login Success", "You clicked the button!", "success");
-      this.props.history.push({
-        pathname: "/",
-      });
-      this.setState({
-        adminPage: true,
+      login({
+        username: this.state.username,
+        password: this.state.password,
+      }).then((response) => {
+        if (response.data !== null) {
+          console.log("response login", response);
+          // sessionStorage.setItem("token", response.result);
+          this.setState({
+            adminPage: true,
+          });
+          this.props.history.push({
+            pathname: "/",
+          });
+          swal("Login Success", "You clicked the button!", "success");
+        } else {
+          swal("Login Invalid", "You clicked the button!", "error");
+        }
       });
     }
   };

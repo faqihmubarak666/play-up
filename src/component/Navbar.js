@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
 import Home from "../pages/landingPage/Home";
 import Services from "../pages/landingPage/Services";
 import Category from "../pages/landingPage/Category";
-import SignUp from "../pages/landingPage/SignUp";
+import SignUp from "../pages/landingPage/signUp/SignUp";
 
 function Navbar() {
   const [click, setClick] = useState(false);
