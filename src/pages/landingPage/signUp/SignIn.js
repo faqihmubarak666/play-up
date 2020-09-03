@@ -1,15 +1,13 @@
 import React, { Component } from "react";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
-import {
-  FacebookLoginButton,
-  GoogleLoginButton,
-} from "react-social-login-buttons";
 import "../../../style/Login.css";
 import swal from "sweetalert";
 import SideBar from "../../../component/SideBar";
 import Navbar from "../../../component/Navbar";
 import { login } from "./ServiceSignIn";
 import { Link } from "react-router-dom";
+import { Container, Row, Col } from "react-bootstrap";
+import FiturChat from "../../../image/undraw_chatting_2yvo(1).svg";
 
 class SignIn extends Component {
   constructor(props) {
@@ -74,43 +72,44 @@ class SignIn extends Component {
     return (
       <div className="container-login">
         <Form className="login-form">
-          <h2>PLAY UP!</h2>
-          <FormGroup>
-            <Label>Username / Email</Label>
-            <Input
-              name="username"
-              type="email"
-              placeholder="Username / Email"
-              onChange={(event) => this.handleChangeInput(event)}
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label>Password</Label>
-            <Input
-              name="password"
-              type="password"
-              placeholder="Password"
-              onChange={(event) => this.handleChangeInput(event)}
-            />
-          </FormGroup>
-          <Link to="/admin">
-            <Button
-              className="btn-lg btn-dark btn-block"
-              onClick={this.getDataUser}
-              style={{ backgroundColor: "#2c3c5b" }}
-            >
-              Masuk
-            </Button>
-          </Link>
-          <div className="text-center pt-3">atau</div>
-          <FacebookLoginButton className="mt-3 mb-3" />
-          <GoogleLoginButton className="mt-3 mb-3" />
-          <div className="text-center">
-            <span>Tidak punya akun ? </span>
-            <a href="/register">Buat akun</a>
-          </div>
+          <Container>
+            <Row>
+              <Col>
+                <img src={FiturChat} alt="fitur chat" />
+              </Col>
+              <Col className="container-form">
+                <h2>PLAY UP!</h2>
+                <FormGroup>
+                  <Label>Username / Email</Label>
+                  <Input
+                    name="username"
+                    type="email"
+                    placeholder="Username / Email"
+                    onChange={(event) => this.handleChangeInput(event)}
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <Label>Password</Label>
+                  <Input
+                    name="password"
+                    type="password"
+                    placeholder="Password"
+                    onChange={(event) => this.handleChangeInput(event)}
+                  />
+                </FormGroup>
+                <Link to="/admin">
+                  <Button
+                    className="btn-lg btn-dark btn-block"
+                    onClick={this.getDataUser}
+                    style={{ backgroundColor: "#2c3c5b" }}
+                  >
+                    Login
+                  </Button>
+                </Link>
+              </Col>
+            </Row>
+          </Container>
         </Form>
-        {/* <Navbar adminPage={this.state.adminPage} />; */}
       </div>
     );
   }

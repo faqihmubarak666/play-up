@@ -3,10 +3,9 @@ import { Button } from "./Button";
 import "../style/Navbar.css";
 import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
 import Home from "../pages/landingPage/Home";
-import Services from "../pages/landingPage/Services";
+import Features from "../pages/landingPage/Features";
 import Category from "../pages/landingPage/Category";
 import SignIn from "../pages/landingPage/signUp/SignIn";
-import SideBar from "./SideBar";
 
 function Navbar(props) {
   const [click, setClick] = useState(false);
@@ -28,11 +27,6 @@ function Navbar(props) {
   }, []);
 
   window.addEventListener("resize", showButton);
-
-  // const { adminPage } = props;
-  // if (adminPage) {
-  //   return <SideBar />;
-  // }
 
   return (
     <>
@@ -88,7 +82,7 @@ function Navbar(props) {
         </nav>
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/features" component={Services} />
+          <Route path="/features" component={Features} />
           <Route path="/category" component={Category} />
           <Route path="/sign-in" component={SignIn} />
         </Switch>

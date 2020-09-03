@@ -7,10 +7,10 @@ function HeroSection() {
   return (
     <div className="hero-container">
       <video src="/videos/video-1.mp4" autoPlay loop muted />
-      <h1>TEMUKAN LAWANMU</h1>
+      <h1>FIND OPPONENT</h1>
       <p>
-        Tunggu apa lagi ? download aplikasinya sekarang juga untuk mencari
-        lawanmu
+        What are you waiting for ? download the application now to search your
+        opponent
       </p>
       <div className="hero-btns">
         <Button

@@ -25,6 +25,9 @@ export class SideBar extends Component {
         this.setState({
           logoutPage: !this.state.logoutPage,
         });
+        // this.props.history.push({
+        //   pathname: "/",
+        // });
       } else {
         swal("Logout cancel!");
       }
@@ -89,7 +92,17 @@ export class SideBar extends Component {
                       className="nav-links"
                       style={{ color: "white" }}
                     >
-                      Semua User
+                      Dashboard
+                    </Link>
+                  </li>
+
+                  <li className="nav-item has-treeview menu-open">
+                    <Link
+                      to="/all-user"
+                      className="nav-links"
+                      style={{ color: "white" }}
+                    >
+                      All User
                     </Link>
                   </li>
 
@@ -99,7 +112,7 @@ export class SideBar extends Component {
                       className="nav-links"
                       style={{ color: "white" }}
                     >
-                      Jadwal Pertandingan
+                      Match Schedule
                     </Link>
                   </li>
 
@@ -110,19 +123,17 @@ export class SideBar extends Component {
                       onClick={this.logout}
                       style={{ color: "white" }}
                     >
-                      Keluar
+                      Logout
                     </Link>
                   </li>
                 </ul>
               </nav>
-              {/* /.sidebar-menu */}
             </div>
-            {/* /.sidebar */}
           </aside>
           <Switch>
             <Route path="/admin" exact component={UserContainer} />
+            <Route path="/all-user" exact component={UserContainer} />
             <Route path="/match-schedule" component={UserContainer} />
-            <Route path="/logout" component={Navbar} />
           </Switch>
         </BrowserRouter>
       </div>
