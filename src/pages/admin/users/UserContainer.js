@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { getAllUsers } from "./UserServiceAPI";
 import { connect } from "react-redux";
 import UserList from "./UserList";
+import Footer from "../../../component/Footer";
 
 class UserContainer extends Component {
   componentDidMount() {

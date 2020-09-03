@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import "../style/SideBar.css";
 import swal from "sweetalert";
 import Navbar from "./Navbar";
 
@@ -34,7 +35,10 @@ export class SideBar extends Component {
     }
     return (
       <div>
-        <aside className="main-sidebar sidebar-dark-primary elevation-4">
+        <aside
+          className="main-sidebar sidebar-dark-primary elevation-4"
+          style={{ backgroundColor: "#0ac1a5", minHeight: "50rem" }}
+        >
           {/* Brand Logo */}
           <a href="index3.html" className="brand-link">
             <img
@@ -43,7 +47,12 @@ export class SideBar extends Component {
               className="brand-image img-circle elevation-3"
               style={{ opacity: ".8" }}
             />
-            <span className="brand-text font-weight-light">AdminLTE 3</span>
+            <span
+              className="brand-text font-weight-light"
+              style={{ color: "white" }}
+            >
+              PLAY UP!
+            </span>
           </a>
           {/* Sidebar */}
           <div className="sidebar">
@@ -57,7 +66,7 @@ export class SideBar extends Component {
                 />
               </div>
               <div className="info">
-                <a href="#" className="d-block">
+                <a href="#" className="d-block" style={{ color: "white" }}>
                   Alexander Pierce
                 </a>
               </div>
@@ -73,19 +82,32 @@ export class SideBar extends Component {
                 {/* Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library */}
                 <li className="nav-item has-treeview menu-open">
-                  <Link to="/all-user" className="nav-links">
+                  <Link
+                    to="/all-user"
+                    className="nav-links"
+                    style={{ color: "white" }}
+                  >
                     Semua User
                   </Link>
                 </li>
 
                 <li className="nav-item has-treeview menu-open">
-                  <Link to="/match-schedule" className="nav-links">
+                  <Link
+                    to="/match-schedule"
+                    className="nav-links"
+                    style={{ color: "white" }}
+                  >
                     Jadwal Pertandingan
                   </Link>
                 </li>
 
                 <li className="nav-item has-treeview menu-open">
-                  <Link to="/logout" className="nav-links">
+                  <Link
+                    to="/logout"
+                    className="nav-links"
+                    onClick={this.logout}
+                    style={{ color: "white" }}
+                  >
                     Keluar
                   </Link>
                 </li>

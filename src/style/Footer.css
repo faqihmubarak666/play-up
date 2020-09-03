@@ -1,5 +1,5 @@
 .footer-container {
-  background-color: #242424;
+  background-color: #0ac1a5;
   padding: 4rem 0 2rem 0;
   display: flex;
   flex-direction: column;
@@ -16,7 +16,7 @@
 
   margin-bottom: 24px;
   padding: 24px;
-  color: #fff;
+  color: white;
 }
 
 .footer-subscription > p {
@@ -81,7 +81,7 @@
 }
 
 .footer-link-items a:hover {
-  color: #e9e9e9;
+  color: white;
   transition: 0.3s ease-out;
 }
 
@@ -160,4 +160,12 @@
 }
 
 @media screen and (max-width: 768px) {
+}
+
+.footer-subscription-heading {
+  color: white;
+}
+
+.footer-subscription-text {
+  color: white;
 }
