@@ -50,11 +50,11 @@ function Navbar() {
               </li>
               <li className="nav-item">
                 <Link
-                  to="/services"
+                  to="/features"
                   className="nav-links"
                   onClick={closeMobileMenu}
                 >
-                  Fitur
+                  Features
                 </Link>
               </li>
               <li className="nav-item">
@@ -63,13 +63,13 @@ function Navbar() {
                   className="nav-links"
                   onClick={closeMobileMenu}
                 >
-                  Kategori
+                  Category
                 </Link>
               </li>
 
               <li>
                 <Link
-                  to="/sign-up"
+                  to="/sign-in"
                   className="nav-links-mobile"
                   onClick={closeMobileMenu}
                 >
@@ -77,14 +77,14 @@ function Navbar() {
                 </Link>
               </li>
             </ul>
-            {button && <Button buttonStyle="btn--outline">Masuk</Button>}
+            {button && <Button buttonStyle="btn--outline">Sign In</Button>}
           </div>
         </nav>
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/services" component={Services} />
+          <Route path="/features" component={Services} />
           <Route path="/category" component={Category} />
-          <Route path="/sign-up" component={SignUp} />
+          <Route path="/sign-in" component={SignUp} />
         </Switch>
       </BrowserRouter>
     </>
