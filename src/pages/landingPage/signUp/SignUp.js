@@ -43,21 +43,25 @@ class SignUp extends Component {
       login({
         username: this.state.username,
         password: this.state.password,
-      }).then((response) => {
-        if (response.data !== null) {
-          console.log("response login", response);
-          // sessionStorage.setItem("token", response.result);
-          this.setState({
-            adminPage: true,
-          });
-          this.props.history.push({
-            pathname: "/",
-          });
-          swal("Login Success", "You clicked the button!", "success");
-        } else {
+      })
+        .then((response) => {
+          if (response.data !== null) {
+            console.log("response login", response);
+            // sessionStorage.setItem("token", response.result);
+            this.setState({
+              adminPage: true,
+            });
+            this.props.history.push({
+              pathname: "/",
+            });
+            swal("Login Success", "You clicked the button!", "success");
+          } else {
+            swal("Login Invalid", "You clicked the button!", "error");
+          }
+        })
+        .catch(() => {
           swal("Login Invalid", "You clicked the button!", "error");
-        }
-      });
+        });
     }
   };
 
