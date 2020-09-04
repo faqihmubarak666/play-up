@@ -5,11 +5,16 @@ import Navbar from "./Navbar";
 import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
 import UserContainer from "../pages/admin/users/UserContainer";
 import Dashboard from "../pages/admin/Dashboard";
+import { connect } from "react-redux";
+import Header from "./Header";
 
 export class SideBar extends Component {
-  state = {
-    logoutPage: false,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      logoutPage: false,
+    };
+  }
 
   logout = () => {
     swal({
@@ -34,10 +39,14 @@ export class SideBar extends Component {
       }
     });
   };
+
   render() {
     if (this.state.logoutPage) {
       return <Navbar />;
     }
+
+    const { admin } = this.props;
+
     return (
       <div>
         <BrowserRouter>
@@ -66,14 +75,27 @@ export class SideBar extends Component {
               <div className="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div className="image">
                   <img
-                    src="dist/img/user2-160x160.jpg"
-                    className="img-circle elevation-2"
-                    alt="User Image"
+                    src={admin.photo}
+                    // className="img-circle elevation-2"
+                    style={{
+                      height: "50px",
+                      width: "50px",
+                      borderRadius: "50px",
+                    }}
+                    alt="Admin Image"
                   />
                 </div>
                 <div className="info">
-                  <a href="#" className="d-block" style={{ color: "white" }}>
-                    Alexander Pierce
+                  <a
+                    href="#"
+                    className="d-block"
+                    style={{
+                      color: "white",
+                      fontSize: "20px",
+                      marginTop: "5px",
+                    }}
+                  >
+                    {admin.user_full_name}
                   </a>
                 </div>
               </div>
@@ -142,4 +164,10 @@ export class SideBar extends Component {
   }
 }
 
-export default SideBar;
+const mapStateToProps = (state) => {
+  return {
+    admin: state.rGetDataUser.Users.admin,
+  };
+};
+
+export default connect(mapStateToProps)(SideBar);

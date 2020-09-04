@@ -11,7 +11,6 @@ class UserContainer extends Component {
   loadData = () => {
     getAllUsers().then((response) => {
       const data = response.data;
-      console.log(`====${data}`);
       this.props.GetAllUser(data);
     });
   };

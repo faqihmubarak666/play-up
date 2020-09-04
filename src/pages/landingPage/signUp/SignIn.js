@@ -8,6 +8,9 @@ import { Link } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 import Login from "../../../image/undraw_secure_login_pdn4.svg";
 import Footer from "../../../component/Footer";
+import { connect } from "react-redux";
+import Header from "../../../component/Header";
+import Navbar from "../../../component/Navbar";
 
 class SignIn extends Component {
   constructor(props) {
@@ -47,7 +50,8 @@ class SignIn extends Component {
       })
         .then((response) => {
           if (response.data !== null) {
-            console.log("response login", response);
+            const data = response.data;
+            this.props.GetAdmin(data);
             // sessionStorage.setItem("token", response.result);
             this.setState({
               adminPage: !this.state.adminPage,
@@ -137,4 +141,9 @@ class SignIn extends Component {
   }
 }
 
-export default SignIn;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    GetAdmin: (data) => dispatch({ type: "GET_ADMIN", data: data }),
+  };
+};
+export default connect(null, mapDispatchToProps)(SignIn);
