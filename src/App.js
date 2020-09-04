@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Navbar from "./component/Navbar";
 import SideBar from "./component/SideBar";
+import PlayVideo from "./pages/landingPage/PlayVideo";
 
 class App extends Component {
   render() {
@@ -8,6 +9,7 @@ class App extends Component {
       <div>
         <Navbar />
         {/* <SideBar /> */}
+        {/* <PlayVideo /> */}
       </div>
     );
   }

@@ -1,20 +1,26 @@
 .container-login {
-  background: url(../image/frame-harirak-UR_mNYmpwco-unsplash.jpg) no-repeat;
-  min-height: 730px;
-  padding-top: 100px;
+  /* background: url(../image/frame-harirak-UR_mNYmpwco-unsplash.jpg) no-repeat; */
+  background-color: white;
+  min-height: 580px;
+  padding-top: 30px;
 }
 
 .login-form {
   background-color: white;
-  width: 800px;
+  width: 1000px;
 
   padding: 15px;
   margin: auto;
   height: 100%;
-  border: solid 1px;
+  /* border: solid 1px; */
 }
 
 h2 {
   text-align: center;
   color: #0ac1a5;
+}
+
+.container-form {
+  margin-top: 80px;
+  margin-bottom: 80px;
 }

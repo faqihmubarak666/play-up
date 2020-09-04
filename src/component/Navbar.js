@@ -6,8 +6,9 @@ import Home from "../pages/landingPage/Home";
 import Features from "../pages/landingPage/Features";
 import Category from "../pages/landingPage/Category";
 import SignIn from "../pages/landingPage/signUp/SignIn";
+import PlayVideo from "../pages/landingPage/PlayVideo";
 
-function Navbar(props) {
+const Navbar = () => {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
 
@@ -67,17 +68,16 @@ function Navbar(props) {
                 </Link>
               </li>
 
-              <li>
+              <li className="nav-item">
                 <Link
                   to="/sign-in"
-                  className="nav-links-mobile"
+                  className="nav-links"
                   onClick={closeMobileMenu}
                 >
                   Sign In
                 </Link>
               </li>
             </ul>
-            {button && <Button buttonStyle="btn--outline">Sign In</Button>}
           </div>
         </nav>
         <Switch>
@@ -85,10 +85,11 @@ function Navbar(props) {
           <Route path="/features" component={Features} />
           <Route path="/category" component={Category} />
           <Route path="/sign-in" component={SignIn} />
+          <Route path="/play-video" component={PlayVideo} />
         </Switch>
       </BrowserRouter>
     </>
   );
-}
+};
 
 export default Navbar;

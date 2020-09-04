@@ -2,6 +2,7 @@ import React from "react";
 import "../App.css";
 import { Button } from "./Button";
 import "../style/HeroSection.css";
+import { Link } from "react-router-dom";
 
 function HeroSection() {
   return (
@@ -18,16 +19,22 @@ function HeroSection() {
           buttonStyle="btn--outline"
           buttonSize="btn--large"
         >
-          Download PLAY UP!
+          <a href="https://play.google.com/store" style={{ color: "black" }}>
+            Download PLAY UP!
+          </a>
         </Button>
-        <Button
-          className="btns"
-          buttonStyle="btn--primary"
-          buttonSize="btn--large"
-          onClick={console.log("hey")}
-        >
-          WATCH TRAILER <i className="far fa-play-circle" />
-        </Button>
+
+        <Link to="/play-video">
+          <Button
+            className="btns"
+            buttonStyle="btn--primary"
+            buttonSize="btn--large"
+          >
+            <a style={{ color: "black" }}>
+              WATCH TRAILER <i className="far fa-play-circle" />
+            </a>
+          </Button>
+        </Link>
       </div>
     </div>
   );

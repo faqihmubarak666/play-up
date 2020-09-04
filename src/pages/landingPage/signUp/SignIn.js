@@ -3,11 +3,11 @@ import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import "../../../style/Login.css";
 import swal from "sweetalert";
 import SideBar from "../../../component/SideBar";
-import Navbar from "../../../component/Navbar";
 import { login } from "./ServiceSignIn";
 import { Link } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
-import FiturChat from "../../../image/undraw_chatting_2yvo(1).svg";
+import Login from "../../../image/undraw_secure_login_pdn4.svg";
+import Footer from "../../../component/Footer";
 
 class SignIn extends Component {
   constructor(props) {
@@ -29,15 +29,16 @@ class SignIn extends Component {
   getDataUser = () => {
     if (this.state.username === "" && this.state.password === "") {
       this.setState({
-        usernameInvalid: "Invalid username and password !",
+        usernameInvalid: "Invalid username",
+        passwordInvalid: "Invalid password",
       });
     } else if (this.state.username === "") {
       this.setState({
-        usernameInvalid: "Invalid username !",
+        usernameInvalid: "Invalid username",
       });
     } else if (this.state.password === "") {
       this.setState({
-        passwordInvalid: "Invalid password !",
+        passwordInvalid: "Invalid password",
       });
     } else {
       login({
@@ -75,21 +76,41 @@ class SignIn extends Component {
           <Container>
             <Row>
               <Col>
-                <img src={FiturChat} alt="fitur chat" />
+                <img src={Login} alt="picture login" />
               </Col>
               <Col className="container-form">
                 <h2>PLAY UP!</h2>
                 <FormGroup>
-                  <Label>Username / Email</Label>
+                  <Label
+                    style={
+                      this.state.passwordInvalid
+                        ? { color: "red" }
+                        : { color: "black" }
+                    }
+                  >
+                    {this.state.usernameInvalid
+                      ? this.state.usernameInvalid
+                      : "Username"}
+                  </Label>
                   <Input
                     name="username"
-                    type="email"
-                    placeholder="Username / Email"
+                    type="username"
+                    placeholder="Username"
                     onChange={(event) => this.handleChangeInput(event)}
                   />
                 </FormGroup>
                 <FormGroup>
-                  <Label>Password</Label>
+                  <Label
+                    style={
+                      this.state.passwordInvalid
+                        ? { color: "red" }
+                        : { color: "black" }
+                    }
+                  >
+                    {this.state.passwordInvalid
+                      ? this.state.passwordInvalid
+                      : "Password"}
+                  </Label>
                   <Input
                     name="password"
                     type="password"
@@ -97,19 +118,20 @@ class SignIn extends Component {
                     onChange={(event) => this.handleChangeInput(event)}
                   />
                 </FormGroup>
-                <Link to="/admin">
-                  <Button
-                    className="btn-lg btn-dark btn-block"
-                    onClick={this.getDataUser}
-                    style={{ backgroundColor: "#2c3c5b" }}
-                  >
-                    Login
-                  </Button>
-                </Link>
+                {/* <Link to="/admin"> */}
+                <Button
+                  className="btn-lg btn-dark btn-block"
+                  onClick={this.getDataUser}
+                  style={{ backgroundColor: "#2c3c5b" }}
+                >
+                  Login
+                </Button>
+                {/* </Link> */}
               </Col>
             </Row>
           </Container>
         </Form>
+        <Footer />
       </div>
     );
   }

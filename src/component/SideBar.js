@@ -4,6 +4,7 @@ import swal from "sweetalert";
 import Navbar from "./Navbar";
 import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
 import UserContainer from "../pages/admin/users/UserContainer";
+import Dashboard from "../pages/admin/Dashboard";
 
 export class SideBar extends Component {
   state = {
@@ -131,7 +132,7 @@ export class SideBar extends Component {
             </div>
           </aside>
           <Switch>
-            <Route path="/admin" exact component={UserContainer} />
+            <Route path="/admin" exact component={Dashboard} />
             <Route path="/all-user" exact component={UserContainer} />
             <Route path="/match-schedule" component={UserContainer} />
           </Switch>
