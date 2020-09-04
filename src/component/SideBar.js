@@ -7,6 +7,7 @@ import UserContainer from "../pages/admin/users/UserContainer";
 import Dashboard from "../pages/admin/Dashboard";
 import { connect } from "react-redux";
 import Header from "./Header";
+import ScheduleContainer from "../pages/admin/scheduleMatch/ScheduleContainer";
 
 export class SideBar extends Component {
   constructor(props) {
@@ -56,15 +57,15 @@ export class SideBar extends Component {
           >
             {/* Brand Logo */}
             <a href="index3.html" className="brand-link">
-              <img
+              {/* <img
                 src="dist/img/AdminLTELogo.png"
                 alt="AdminLTE Logo"
                 className="brand-image img-circle elevation-3"
                 style={{ opacity: ".8" }}
-              />
+              /> */}
               <span
                 className="brand-text font-weight-light"
-                style={{ color: "white" }}
+                style={{ color: "white", marginLeft: "10px" }}
               >
                 PLAY UP!
               </span>
@@ -116,6 +117,10 @@ export class SideBar extends Component {
                       style={{ color: "white" }}
                     >
                       Dashboard
+                      <i
+                        class="fas fa-columns"
+                        style={{ marginLeft: "5px", marginTop: "3px" }}
+                      ></i>
                     </Link>
                   </li>
 
@@ -126,6 +131,10 @@ export class SideBar extends Component {
                       style={{ color: "white" }}
                     >
                       All User
+                      <i
+                        class="fas fa-users"
+                        style={{ marginLeft: "5px", marginTop: "3px" }}
+                      ></i>
                     </Link>
                   </li>
 
@@ -136,6 +145,10 @@ export class SideBar extends Component {
                       style={{ color: "white" }}
                     >
                       Match Schedule
+                      <i
+                        class="far fa-calendar-alt"
+                        style={{ marginLeft: "5px", marginTop: "3px" }}
+                      ></i>
                     </Link>
                   </li>
 
@@ -147,6 +160,10 @@ export class SideBar extends Component {
                       style={{ color: "white" }}
                     >
                       Logout
+                      <i
+                        class="fas fa-sign-out-alt"
+                        style={{ marginLeft: "5px", marginTop: "3px" }}
+                      ></i>
                     </Link>
                   </li>
                 </ul>
@@ -154,9 +171,9 @@ export class SideBar extends Component {
             </div>
           </aside>
           <Switch>
-            <Route path="/admin" exact component={Dashboard} />
-            <Route path="/all-user" exact component={UserContainer} />
-            <Route path="/match-schedule" component={UserContainer} />
+            <Route path="/admin" component={Dashboard} />
+            <Route path="/all-user" component={UserContainer} />
+            <Route path="/match-schedule" component={ScheduleContainer} />
           </Switch>
         </BrowserRouter>
       </div>

@@ -9,8 +9,8 @@ import { Container, Row, Col } from "react-bootstrap";
 import Login from "../../../image/undraw_secure_login_pdn4.svg";
 import Footer from "../../../component/Footer";
 import { connect } from "react-redux";
-import Header from "../../../component/Header";
-import Navbar from "../../../component/Navbar";
+import Loading from "../../../image/animation_500_kenxqlc5.gif";
+import App from "../../../App";
 
 class SignIn extends Component {
   constructor(props) {
@@ -21,6 +21,7 @@ class SignIn extends Component {
       usernameInvalid: "",
       passwordInvalid: "",
       adminPage: false,
+      isLoaded: false,
     };
   }
 
@@ -52,13 +53,15 @@ class SignIn extends Component {
           if (response.data !== null) {
             const data = response.data;
             this.props.GetAdmin(data);
+            console.log("data admin", data);
             // sessionStorage.setItem("token", response.result);
             this.setState({
               adminPage: !this.state.adminPage,
+              isLoaded: !this.state.isLoaded,
             });
-            this.props.history.push({
-              pathname: "/admin",
-            });
+            // this.props.history.push({
+            //   pathname: "/admin",
+            // });
             swal("Login Success", "You clicked the button!", "success");
           } else {
             swal("Login Invalid", "You clicked the button!", "error");
@@ -76,6 +79,9 @@ class SignIn extends Component {
     }
     return (
       <div className="container-login">
+        {/* <App adminPage={this.state.adminPage} /> */}
+        {/* // <div>
+      //   {this.state.isLoaded ? ( */}
         <Form className="login-form">
           <Container>
             <Row>
@@ -122,20 +128,30 @@ class SignIn extends Component {
                     onChange={(event) => this.handleChangeInput(event)}
                   />
                 </FormGroup>
-                {/* <Link to="/admin"> */}
-                <Button
-                  className="btn-lg btn-dark btn-block"
-                  onClick={this.getDataUser}
-                  style={{ backgroundColor: "#2c3c5b" }}
-                >
-                  Login
-                </Button>
-                {/* </Link> */}
+                <Link to="/admin">
+                  <Button
+                    className="btn-lg btn-dark btn-block"
+                    onClick={this.getDataUser}
+                    style={{ backgroundColor: "#2c3c5b" }}
+                  >
+                    Login
+                  </Button>
+                </Link>
               </Col>
             </Row>
           </Container>
         </Form>
         <Footer />
+        {/* </div> */}
+        {/* // ) : (
+        //   <img
+        //     src={Loading}
+        //     alt="loading"
+        //     style={{
+        //       marginTop: "40px",
+        //     }}
+        //   />
+        // )} */}
       </div>
     );
   }

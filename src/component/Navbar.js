@@ -32,7 +32,11 @@ const Navbar = () => {
   return (
     <>
       <BrowserRouter>
-        <nav className="navbar" style={{ backgroundColor: "#0AC1A5" }}>
+        <nav
+          hidden="true"
+          className="navbar"
+          style={{ backgroundColor: "#0AC1A5" }}
+        >
           <div
             className="navbar-container"
             style={{ backgroundColor: "#0AC1A5" }}
