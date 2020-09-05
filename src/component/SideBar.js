@@ -8,6 +8,7 @@ import Dashboard from "../pages/admin/Dashboard";
 import { connect } from "react-redux";
 import Header from "./Header";
 import ScheduleContainer from "../pages/admin/scheduleMatch/ScheduleContainer";
+import CategoryContainer from "../pages/admin/category/CategoryContainer";
 
 export class SideBar extends Component {
   constructor(props) {
@@ -57,12 +58,6 @@ export class SideBar extends Component {
           >
             {/* Brand Logo */}
             <a href="index3.html" className="brand-link">
-              {/* <img
-                src="dist/img/AdminLTELogo.png"
-                alt="AdminLTE Logo"
-                className="brand-image img-circle elevation-3"
-                style={{ opacity: ".8" }}
-              /> */}
               <span
                 className="brand-text font-weight-light"
                 style={{ color: "white", marginLeft: "10px" }}
@@ -154,6 +149,34 @@ export class SideBar extends Component {
 
                   <li className="nav-item has-treeview menu-open">
                     <Link
+                      to="/features"
+                      className="nav-links"
+                      style={{ color: "white" }}
+                    >
+                      Features
+                      <i
+                        class="fab fa-android"
+                        style={{ marginLeft: "5px", marginTop: "3px" }}
+                      ></i>
+                    </Link>
+                  </li>
+
+                  <li className="nav-item has-treeview menu-open">
+                    <Link
+                      to="/category"
+                      className="nav-links"
+                      style={{ color: "white" }}
+                    >
+                      Category
+                      <i
+                        class="fas fa-list"
+                        style={{ marginLeft: "5px", marginTop: "3px" }}
+                      ></i>
+                    </Link>
+                  </li>
+
+                  <li className="nav-item has-treeview menu-open">
+                    <Link
                       to="/logout"
                       className="nav-links"
                       onClick={this.logout}
@@ -174,6 +197,8 @@ export class SideBar extends Component {
             <Route path="/admin" component={Dashboard} />
             <Route path="/all-user" component={UserContainer} />
             <Route path="/match-schedule" component={ScheduleContainer} />
+            <Route path="/features" component={ScheduleContainer} />
+            <Route path="/category" component={CategoryContainer} />
           </Switch>
         </BrowserRouter>
       </div>

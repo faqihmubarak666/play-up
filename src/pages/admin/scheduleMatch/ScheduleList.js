@@ -1,6 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import Table from "react-bootstrap/Table";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import ListGroup from "react-bootstrap/ListGroup";
 
 const ScheduleList = (props) => {
   const { allSchedule } = props;
@@ -17,26 +20,61 @@ const ScheduleList = (props) => {
           <tr>
             <th>NO</th>
             <th>SCHEDULE ID</th>
-            <th>USERNAME</th>
-            <th>LOCATION</th>
-            <th>TIME</th>
             <th>STATUS</th>
             <th>RESULT</th>
-            <th>OPPONENT</th>
           </tr>
         </thead>
         <tbody>
           {allSchedule.map((data, index) => (
-            <tr>
-              <td>{index + 1}</td>
-              <td>{data.schedule_id}</td>
-              <td>{data.schedule_user_name}</td>
-              <td>{data.schedule_location}</td>
-              <td>{data.schedule_time}</td>
-              <td>{data.schedule_status}</td>
-              <td>{data.schedule_result}</td>
-              <td>{data.schedule_opponent}</td>
-            </tr>
+            <>
+              <tr>
+                <td>{index + 1}</td>
+                <td>{data.schedule_id}</td>
+
+                <td>{data.schedule_status}</td>
+                <td>{data.schedule_result}</td>
+              </tr>
+              <tr>
+                <td colSpan="7">
+                  <Row>
+                    <Col>
+                      <ListGroup.Item
+                        style={{
+                          backgroundColor: "Blue",
+                          textTransform: "uppercase",
+                          color: "black",
+                        }}
+                      >
+                        ID : {data.schedule_user_id}
+                        <br />
+                        {data.schedule_user_name}
+                      </ListGroup.Item>
+                    </Col>
+                    <span style={{ textAlign: "center", margin: "auto" }}>
+                      VS
+                    </span>
+                    <Col>
+                      <ListGroup.Item
+                        style={{
+                          backgroundColor: "Red",
+                          textTransform: "uppercase",
+                          color: "black",
+                        }}
+                      >
+                        ID : {data.schedule_opponent_id}
+                        <br />
+                        {data.schedule_opponent}
+                      </ListGroup.Item>
+                    </Col>
+                  </Row>
+                </td>
+              </tr>
+              <tr>
+                <td colSpan="7" style={{ textTransform: "uppercase" }}>
+                  {data.schedule_time} AT {data.schedule_location}
+                </td>
+              </tr>
+            </>
           ))}
         </tbody>
       </Table>

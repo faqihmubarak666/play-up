@@ -53,15 +53,14 @@ class SignIn extends Component {
           if (response.data !== null) {
             const data = response.data;
             this.props.GetAdmin(data);
-            console.log("data admin", data);
             // sessionStorage.setItem("token", response.result);
             this.setState({
               adminPage: !this.state.adminPage,
               isLoaded: !this.state.isLoaded,
             });
-            // this.props.history.push({
-            //   pathname: "/admin",
-            // });
+            this.props.history.push({
+              pathname: "/admin",
+            });
             swal("Login Success", "You clicked the button!", "success");
           } else {
             swal("Login Invalid", "You clicked the button!", "error");
@@ -79,7 +78,6 @@ class SignIn extends Component {
     }
     return (
       <div className="container-login">
-        {/* <App adminPage={this.state.adminPage} /> */}
         {/* // <div>
       //   {this.state.isLoaded ? ( */}
         <Form className="login-form">

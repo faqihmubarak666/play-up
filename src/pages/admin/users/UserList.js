@@ -17,16 +17,20 @@ const UserList = (props) => {
         <thead>
           <tr>
             <th>NO</th>
+            <th>ID USER</th>
             <th>USERNAME</th>
-            <th>JENIS KELAMIN</th>
+            <th>FULL NAME</th>
+            <th>GENDER</th>
             <th>EMAIL</th>
-            <th>FOTO</th>
+            <th>PHOTO</th>
           </tr>
         </thead>
         <tbody>
           {allUser.map((data, index) => (
             <tr>
               <td>{index + 1}</td>
+              <td>{data.id}</td>
+              <td>{data.username}</td>
               <td>{data.user_full_name}</td>
               <td>{data.gender}</td>
               <td>{data.email}</td>

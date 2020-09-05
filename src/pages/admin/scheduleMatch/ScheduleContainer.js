@@ -10,9 +10,8 @@ class ScheduleContainer extends Component {
 
   loadData = () => {
     getAllSchedule().then((response) => {
-      console.log("response", response);
       const data = response.data;
-      console.log("data =", data);
+      console.log("data schedule=", data);
       this.props.GetAllSchedule(data);
     });
   };
