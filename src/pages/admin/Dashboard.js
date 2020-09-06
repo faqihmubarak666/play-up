@@ -8,12 +8,12 @@ export class Dashboard extends Component {
   render() {
     const { allUser, allSchedule, allCategory } = this.props;
     return (
-      <div className="content-wrapper">
+      <div className="content-wrapper" style={{ backgroundColor: "white" }}>
         <Row>
           <Col>
             <h1
               style={{
-                marginLeft: "430px",
+                textAlign: "center",
                 color: "#0ac1a5",
                 fontSize: "50px",
               }}
@@ -27,7 +27,11 @@ export class Dashboard extends Component {
             />
           </Col>
         </Row>
-        <Row style={{ marginLeft: "20px", marginTop: "30px" }}>
+        <Row
+          style={{
+            margin: "30px  120px auto",
+          }}
+        >
           <Col>
             <Card
               style={{

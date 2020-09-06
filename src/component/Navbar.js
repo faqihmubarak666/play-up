@@ -8,7 +8,7 @@ import Category from "../pages/landingPage/Category";
 import SignIn from "../pages/landingPage/signUp/SignIn";
 import PlayVideo from "../pages/landingPage/PlayVideo";
 
-const Navbar = () => {
+const Navbar = (props) => {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
 
@@ -29,11 +29,13 @@ const Navbar = () => {
 
   window.addEventListener("resize", showButton);
 
+  // const { loadDataFeature } = props;
+
   return (
     <>
       <BrowserRouter>
         <nav
-          hidden="true"
+          // hidden="true"
           className="navbar"
           style={{ backgroundColor: "#0AC1A5" }}
         >

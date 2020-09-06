@@ -10,6 +10,7 @@ import swal from "sweetalert";
 import FeatureList from "./FeatureList";
 import FeatureCreate from "./FeatureCreate";
 import FeatureUpdate from "./FeatureUpdate";
+import Navbar from "../../../component/Navbar";
 
 export class FeatureContainer extends Component {
   constructor(props) {
@@ -24,6 +25,18 @@ export class FeatureContainer extends Component {
       dataFeature: {},
     };
   }
+
+  handleUploadImage = (event) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        this.setState({
+          featureImage: reader.result,
+        });
+      }
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  };
 
   componentDidMount() {
     this.loadData();
@@ -168,6 +181,7 @@ export class FeatureContainer extends Component {
             featureName={this.state.featureName}
             featureDescription={this.state.featureDescription}
             featureImage={this.state.featureImage}
+            handleUploadImage={this.handleUploadImage}
           />
         )}
 
@@ -178,8 +192,11 @@ export class FeatureContainer extends Component {
             handleChangeInput={this.handleChangeInput}
             updateNewFeature={this.updateNewFeature}
             dataFeature={this.state.dataFeature}
+            handleUploadImage={this.handleUploadImage}
           />
         )}
+
+        {/* <Navbar loadDataFeature={this.loadData} /> */}
       </div>
     );
   }

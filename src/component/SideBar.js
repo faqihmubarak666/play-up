@@ -9,6 +9,7 @@ import { connect } from "react-redux";
 import Header from "./Header";
 import ScheduleContainer from "../pages/admin/scheduleMatch/ScheduleContainer";
 import CategoryContainer from "../pages/admin/category/CategoryContainer";
+import FeatureContainer from "../pages/admin/features/FeatureContainer";
 
 export class SideBar extends Component {
   constructor(props) {
@@ -197,7 +198,7 @@ export class SideBar extends Component {
             <Route path="/admin" component={Dashboard} />
             <Route path="/all-user" component={UserContainer} />
             <Route path="/match-schedule" component={ScheduleContainer} />
-            <Route path="/features" component={ScheduleContainer} />
+            <Route path="/features" component={FeatureContainer} />
             <Route path="/category" component={CategoryContainer} />
           </Switch>
         </BrowserRouter>

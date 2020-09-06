@@ -11,6 +11,7 @@ const FeatureCreate = (props) => {
     featureName,
     featureDescription,
     featureImage,
+    handleUploadImage,
   } = props;
   return (
     <div>
@@ -50,13 +51,18 @@ const FeatureCreate = (props) => {
 
           <Form>
             <Form.Group controlId="formBookName">
+              <img
+                src={featureImage}
+                style={{ width: "70px", height: "70px" }}
+                alt="*upload image"
+              />
               <Form.Label>IMAGE FEATURE</Form.Label>
               <Form.Control
-                value={featureImage}
-                type="text"
+                type="file"
+                accept="image"
                 name="featureImage"
                 placeholder="Input image feature"
-                onChange={(event) => handleChangeInput(event)}
+                onChange={(event) => handleUploadImage(event)}
               />
             </Form.Group>
           </Form>

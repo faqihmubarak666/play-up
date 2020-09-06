@@ -24,6 +24,18 @@ class CategoryContainer extends Component {
     };
   }
 
+  handleUploadImage = (event) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        this.setState({
+          categoryImage: reader.result,
+        });
+      }
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  };
+
   componentDidMount() {
     this.loadData();
   }
@@ -157,6 +169,7 @@ class CategoryContainer extends Component {
             createNewCategory={this.createNewCategory}
             categoryName={this.state.categoryName}
             categoryImage={this.state.categoryImage}
+            handleUploadImage={this.handleUploadImage}
           />
         )}
 
@@ -167,6 +180,7 @@ class CategoryContainer extends Component {
             handleChangeInput={this.handleChangeInput}
             updateNewCategory={this.updateNewCategory}
             dataCategory={this.state.dataCategory}
+            handleUploadImage={this.handleUploadImage}
           />
         )}
       </div>
