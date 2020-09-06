@@ -1,9 +1,6 @@
 import React from "react";
 import "../style/Cards.css";
 import CardItem from "./CardItem";
-import FiturChat from "../image/undraw_chatting_2yvo(1).svg";
-import SearchPeople from "../image/undraw_people_search_wctu.svg";
-import Rank from "../image/undraw_winners_ao2o.svg";
 import { connect } from "react-redux";
 
 const Cards = (props) => {

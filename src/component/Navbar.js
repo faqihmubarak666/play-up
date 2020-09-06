@@ -7,6 +7,9 @@ import Features from "../pages/landingPage/Features";
 import Category from "../pages/landingPage/Category";
 import SignIn from "../pages/landingPage/signUp/SignIn";
 import PlayVideo from "../pages/landingPage/PlayVideo";
+import { getAllCategory } from "../pages/admin/category/CategoryService";
+import { getAllFeature } from "../pages/admin/features/FeatureService";
+import { connect } from "react-redux";
 
 const Navbar = (props) => {
   const [click, setClick] = useState(false);
@@ -25,20 +28,30 @@ const Navbar = (props) => {
 
   useEffect(() => {
     showButton();
+    loadDataCategory();
+    loadDataFeature();
   }, []);
 
-  window.addEventListener("resize", showButton);
+  const loadDataCategory = () => {
+    getAllCategory().then((response) => {
+      const data = response.data;
+      props.GetAllCategory(data);
+    });
+  };
 
-  // const { loadDataFeature } = props;
+  const loadDataFeature = () => {
+    getAllFeature().then((response) => {
+      const data = response.data;
+      props.GetAllFeature(data);
+    });
+  };
+
+  window.addEventListener("resize", showButton);
 
   return (
     <>
       <BrowserRouter>
-        <nav
-          // hidden="true"
-          className="navbar"
-          style={{ backgroundColor: "#0AC1A5" }}
-        >
+        <nav className="navbar" style={{ backgroundColor: "#0AC1A5" }}>
           <div
             className="navbar-container"
             style={{ backgroundColor: "#0AC1A5" }}
@@ -51,7 +64,11 @@ const Navbar = (props) => {
             </div>
             <ul className={click ? "nav-menu active" : "nav-menu"}>
               <li className="nav-item">
-                <Link to="/" className="nav-links" onClick={closeMobileMenu}>
+                <Link
+                  to="/"
+                  className="nav-links"
+                  onClick={(closeMobileMenu, loadDataFeature, loadDataCategory)}
+                >
                   Home
                 </Link>
               </li>
@@ -59,7 +76,7 @@ const Navbar = (props) => {
                 <Link
                   to="/features"
                   className="nav-links"
-                  onClick={closeMobileMenu}
+                  onClick={(closeMobileMenu, loadDataFeature)}
                 >
                   Features
                 </Link>
@@ -68,7 +85,7 @@ const Navbar = (props) => {
                 <Link
                   to="/category"
                   className="nav-links"
-                  onClick={closeMobileMenu}
+                  onClick={(closeMobileMenu, loadDataCategory)}
                 >
                   Category
                 </Link>
@@ -98,4 +115,11 @@ const Navbar = (props) => {
   );
 };
 
-export default Navbar;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    GetAllCategory: (data) => dispatch({ type: "GET_CATEGORY", data: data }),
+    GetAllFeature: (data) => dispatch({ type: "GET_FEATURE", data: data }),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Navbar);
