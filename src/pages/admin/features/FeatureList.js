@@ -2,12 +2,12 @@ import React from "react";
 import { connect } from "react-redux";
 import Table from "react-bootstrap/Table";
 
-const CategoryList = (props) => {
+const FeatureList = (props) => {
   const {
-    allCategory,
+    allFeature,
     handleShowModalCreate,
     handleShowModalUpdate,
-    handleDeleteCategory,
+    handleDeleteFeature,
   } = props;
   return (
     <div>
@@ -15,7 +15,7 @@ const CategoryList = (props) => {
         onClick={() => handleShowModalCreate()}
         style={{ float: "left", backgroundColor: "blue", color: "white" }}
       >
-        <i class="fa fa-plus" aria-hidden="true"></i> New Category
+        <i class="fa fa-plus" aria-hidden="true"></i> New Feature
       </button>
       <Table
         striped
@@ -26,23 +26,25 @@ const CategoryList = (props) => {
         <thead>
           <tr>
             <th>NO</th>
-            <th>ID CATEGORY</th>
-            <th>NAME CATEGORY</th>
-            <th>IMAGE</th>
-            <th>STATUS CATEGORY</th>
+            <th>ID FEATURE</th>
+            <th>NAME FEATURE</th>
+            <th>DESCRIPTION FEATURE</th>
+            <th>IMAGE FEATURE</th>
+            <th>STATUS FEATURE</th>
             <th>ACTION</th>
           </tr>
         </thead>
         <tbody>
-          {allCategory.map((data, index) => (
+          {allFeature.map((data, index) => (
             <tr>
               <td>{index + 1}</td>
               <td>{data.id}</td>
-              <td>{data.categoryName}</td>
+              <td>{data.featureName}</td>
+              <td>{data.featureDescription}</td>
               <td>
                 <img
-                  src={data.categoryImage}
-                  alt="image category"
+                  src={data.featureImage}
+                  alt="image feature"
                   style={{
                     height: "50px",
                     width: "50px",
@@ -50,7 +52,7 @@ const CategoryList = (props) => {
                   }}
                 />
               </td>
-              <td>{data.categoryStatus}</td>
+              <td>{data.featureStatus}</td>
               <td>
                 <button
                   onClick={() => handleShowModalUpdate(data)}
@@ -63,7 +65,7 @@ const CategoryList = (props) => {
                   <i class="fa fa-pencil-square" aria-hidden="true"></i>
                 </button>
                 <button
-                  onClick={() => handleDeleteCategory(data.id)}
+                  onClick={() => handleDeleteFeature(data.id)}
                   style={{
                     backgroundColor: "red",
                     color: "white",
@@ -83,8 +85,8 @@ const CategoryList = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    allCategory: state.rGetDataCategory.Category.allCategory,
+    allFeature: state.rGetDataFeature.Feature.allFeature,
   };
 };
 
-export default connect(mapStateToProps)(CategoryList);
+export default connect(mapStateToProps)(FeatureList);

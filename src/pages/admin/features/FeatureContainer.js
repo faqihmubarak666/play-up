@@ -1,26 +1,27 @@
 import React, { Component } from "react";
 import {
-  getAllCategory,
-  createCategory,
-  updateCategory,
-  deleteCategory,
-} from "./CategoryService";
+  getAllFeature,
+  createFeature,
+  updateFeature,
+  deleteFeature,
+} from "./FeatureService";
 import { connect } from "react-redux";
 import swal from "sweetalert";
-import CategoryList from "./CategoryList";
-import CategoryCreate from "./CategoryCreate";
-import CategoryUpdate from "./CategoryUpdate";
+import FeatureList from "./FeatureList";
+import FeatureCreate from "./FeatureCreate";
+import FeatureUpdate from "./FeatureUpdate";
 
-class CategoryContainer extends Component {
+export class FeatureContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
       id: "",
-      categoryName: "",
-      categoryImage: "",
+      featureName: "",
+      featureDescription: "",
+      featureImage: "",
       showModalCreate: false,
       showModalUpdate: false,
-      dataCategory: {},
+      dataFeature: {},
     };
   }
 
@@ -34,26 +35,30 @@ class CategoryContainer extends Component {
   };
 
   loadData = () => {
-    getAllCategory().then((response) => {
+    getAllFeature().then((response) => {
       const data = response.data;
-      this.props.GetAllCategory(data);
+      this.props.GetAllFeature(data);
     });
   };
 
-  createNewCategory = () => {
-    createCategory({
-      categoryName: this.state.categoryName,
-      categoryImage: this.state.categoryImage,
+  createNewFeature = () => {
+    createFeature({
+      featureName: this.state.featureName,
+      featureDescription: this.state.featureDescription,
+      featureImage: this.state.featureImage,
     })
       .then((response) => {
         if (
-          this.state.categoryName == "" ||
-          (this.state.categoryImage == "" && response.code !== 200)
+          this.state.featureName == "" ||
+          this.state.featureDescription == "" ||
+          this.state.featureImage == ""
         ) {
-          swal("Create New Category Failed !!!");
+          swal("Create New Feature Failed !!!");
+        } else if (response.code !== 200) {
+          swal("Create New Feature Failed !!!");
         } else {
           swal(
-            "Create New Category Success",
+            "Create New Feature Success",
             "You clicked the button!",
             "success"
           );
@@ -61,8 +66,9 @@ class CategoryContainer extends Component {
           this.handleShowModalCreate();
           this.setState({
             ...this.state,
-            categoryName: "",
-            categoryImage: "",
+            featureName: "",
+            featureDescription: "",
+            featureImage: "",
           });
         }
       })
@@ -77,26 +83,30 @@ class CategoryContainer extends Component {
     });
   };
 
-  updateNewCategory = (id, categoryName, categoryImage) => {
-    updateCategory({
+  updateNewFeature = (id, featureName, featureDescription, featureImage) => {
+    updateFeature({
       id: this.state.id === "" ? id : this.state.id,
-      categoryName:
-        this.state.categoryName === "" ? categoryName : this.state.categoryName,
-      categoryImage:
-        this.state.categoryImage === ""
-          ? categoryImage
-          : this.state.categoryImage,
+      featureName:
+        this.state.featureName === "" ? featureName : this.state.featureName,
+      featureDescription:
+        this.state.featureDescription === ""
+          ? featureDescription
+          : this.state.featureDescription,
+      featureImage:
+        this.state.featureImage === "" ? featureImage : this.state.featureImage,
     })
       .then((response) => {
         if (response.code === 200) {
-          swal("Update Category Success", "You clicked the button!", "success");
+          console.log(`hasil update`, response);
+          swal("Update Feature Success", "You clicked the button!", "success");
           this.loadData();
           this.handleShowModalUpdate();
           this.setState({
             ...this.state,
             id: "",
-            categoryName: "",
-            categoryImage: "",
+            featureName: "",
+            featureDescription: "",
+            featureImage: "",
           });
         }
       })
@@ -107,12 +117,12 @@ class CategoryContainer extends Component {
 
   handleShowModalUpdate = (data) => {
     this.setState({
-      dataCategory: data,
+      dataFeature: data,
       showModalUpdate: !this.state.showModalUpdate,
     });
   };
 
-  handleDeleteCategory = (id) => {
+  handleDeleteFeature = (id) => {
     swal({
       title: "Are you sure?",
       text:
@@ -125,10 +135,10 @@ class CategoryContainer extends Component {
         swal("Poof! Your imaginary file has been deleted!", {
           icon: "success",
         });
-        deleteCategory(id).then((response) => {
+        deleteFeature(id).then((response) => {
           if (response.code === 200) {
             swal(
-              "Delete Category Success",
+              "Delete Feature Success",
               "You clicked the button!",
               "success"
             );
@@ -144,29 +154,30 @@ class CategoryContainer extends Component {
   render() {
     return (
       <div className="content-wrapper">
-        <CategoryList
+        <FeatureList
           handleShowModalCreate={this.handleShowModalCreate}
           handleShowModalUpdate={this.handleShowModalUpdate}
-          handleDeleteCategory={this.handleDeleteCategory}
+          handleDeleteFeature={this.handleDeleteFeature}
         />
         {!this.state.showModalCreate ? null : (
-          <CategoryCreate
+          <FeatureCreate
             show={this.state.showModalCreate}
             onHide={this.handleShowModalCreate}
             handleChangeInput={this.handleChangeInput}
-            createNewCategory={this.createNewCategory}
-            categoryName={this.state.categoryName}
-            categoryImage={this.state.categoryImage}
+            createNewFeature={this.createNewFeature}
+            featureName={this.state.featureName}
+            featureDescription={this.state.featureDescription}
+            featureImage={this.state.featureImage}
           />
         )}
 
         {!this.state.showModalUpdate ? null : (
-          <CategoryUpdate
+          <FeatureUpdate
             show={this.state.showModalUpdate}
             onHide={this.handleShowModalUpdate}
             handleChangeInput={this.handleChangeInput}
-            updateNewCategory={this.updateNewCategory}
-            dataCategory={this.state.dataCategory}
+            updateNewFeature={this.updateNewFeature}
+            dataFeature={this.state.dataFeature}
           />
         )}
       </div>
@@ -176,8 +187,8 @@ class CategoryContainer extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    GetAllCategory: (data) => dispatch({ type: "GET_CATEGORY", data: data }),
+    GetAllFeature: (data) => dispatch({ type: "GET_FEATURE", data: data }),
   };
 };
 
-export default connect(null, mapDispatchToProps)(CategoryContainer);
+export default connect(null, mapDispatchToProps)(FeatureContainer);

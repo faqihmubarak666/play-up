@@ -2,14 +2,15 @@ import React from "react";
 import { Form, Button } from "react-bootstrap";
 import { Modal } from "react-bootstrap/cjs";
 
-const CategoryCreate = (props) => {
+const FeatureCreate = (props) => {
   const {
     show,
     onHide,
     handleChangeInput,
-    createNewCategory,
-    categoryName,
-    categoryImage,
+    createNewFeature,
+    featureName,
+    featureDescription,
+    featureImage,
   } = props;
   return (
     <div>
@@ -17,18 +18,18 @@ const CategoryCreate = (props) => {
         <Modal.Body>
           <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-vcenter">
-              CREATE NEW CATEGORY
+              CREATE NEW FEATURE
             </Modal.Title>
           </Modal.Header>
 
           <Form>
             <Form.Group controlId="formBookName">
-              <Form.Label>NAME CATEGORY</Form.Label>
+              <Form.Label>NAME FEATURE</Form.Label>
               <Form.Control
-                value={categoryName}
+                value={featureName}
                 type="text"
-                name="categoryName"
-                placeholder="Input name category"
+                name="featureName"
+                placeholder="Input name feature"
                 onChange={(event) => handleChangeInput(event)}
               />
             </Form.Group>
@@ -36,12 +37,25 @@ const CategoryCreate = (props) => {
 
           <Form>
             <Form.Group controlId="formBookName">
-              <Form.Label>UPLOAD IMAGE</Form.Label>
+              <Form.Label>DESCRIPTION FEATURE</Form.Label>
               <Form.Control
-                value={categoryImage}
+                value={featureDescription}
                 type="text"
-                name="categoryImage"
-                placeholder="Input image category"
+                name="featureDescription"
+                placeholder="Input description feature"
+                onChange={(event) => handleChangeInput(event)}
+              />
+            </Form.Group>
+          </Form>
+
+          <Form>
+            <Form.Group controlId="formBookName">
+              <Form.Label>IMAGE FEATURE</Form.Label>
+              <Form.Control
+                value={featureImage}
+                type="text"
+                name="featureImage"
+                placeholder="Input image feature"
                 onChange={(event) => handleChangeInput(event)}
               />
             </Form.Group>
@@ -49,7 +63,7 @@ const CategoryCreate = (props) => {
         </Modal.Body>
         <Modal.Footer>
           <Button
-            onClick={() => createNewCategory()}
+            onClick={() => createNewFeature()}
             style={{ backgroundColor: "blue" }}
           >
             Submit
@@ -63,4 +77,4 @@ const CategoryCreate = (props) => {
   );
 };
 
-export default CategoryCreate;
+export default FeatureCreate;
