@@ -6,8 +6,8 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Navbar />
-        {/* <SideBar /> */}
+        {/* <Navbar /> */}
+        <SideBar />
       </div>
     );
   }

@@ -22,6 +22,7 @@ export class FeatureContainer extends Component {
       featureImage: "",
       showModalCreate: false,
       showModalUpdate: false,
+      isLoaded: false,
       dataFeature: {},
     };
   }
@@ -51,6 +52,9 @@ export class FeatureContainer extends Component {
     getAllFeature().then((response) => {
       const data = response.data;
       this.props.GetAllFeature(data);
+      this.setState({
+        isLoaded: !this.state.isLoaded,
+      });
     });
   };
 
@@ -171,6 +175,7 @@ export class FeatureContainer extends Component {
           handleShowModalCreate={this.handleShowModalCreate}
           handleShowModalUpdate={this.handleShowModalUpdate}
           handleDeleteFeature={this.handleDeleteFeature}
+          isLoaded={this.state.isLoaded}
         />
         {!this.state.showModalCreate ? null : (
           <FeatureCreate

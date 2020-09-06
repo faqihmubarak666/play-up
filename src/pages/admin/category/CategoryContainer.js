@@ -20,6 +20,7 @@ class CategoryContainer extends Component {
       categoryImage: "",
       showModalCreate: false,
       showModalUpdate: false,
+      isLoaded: false,
       dataCategory: {},
     };
   }
@@ -49,6 +50,9 @@ class CategoryContainer extends Component {
     getAllCategory().then((response) => {
       const data = response.data;
       this.props.GetAllCategory(data);
+      this.setState({
+        isLoaded: !this.state.isLoaded,
+      });
     });
   };
 
@@ -160,6 +164,7 @@ class CategoryContainer extends Component {
           handleShowModalCreate={this.handleShowModalCreate}
           handleShowModalUpdate={this.handleShowModalUpdate}
           handleDeleteCategory={this.handleDeleteCategory}
+          isLoaded={this.state.isLoaded}
         />
         {!this.state.showModalCreate ? null : (
           <CategoryCreate
