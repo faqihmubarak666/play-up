@@ -37,11 +37,13 @@ function Footer() {
           <div className="social-icons">
             <Link
               class="social-icon-link facebook"
-              to="/"
+              to="https://www.facebook.com/"
               target="_blank"
               aria-label="Facebook"
             >
-              <i className="fab fa-facebook-f" />
+              <a href="https://www.facebook.com/">
+                <i className="fab fa-facebook-f" style={{ color: "blue" }} />
+              </a>
             </Link>
             <Link
               class="social-icon-link instagram"
@@ -49,7 +51,9 @@ function Footer() {
               target="_blank"
               aria-label="Instagram"
             >
-              <i className="fab fa-instagram" />
+              <a href="https://www.instagram.com/" style={{ color: "Purple" }}>
+                <i className="fab fa-instagram" />
+              </a>
             </Link>
             <Link
               class="social-icon-link youtube"
@@ -57,7 +61,9 @@ function Footer() {
               target="_blank"
               aria-label="Youtube"
             >
-              <i className="fab fa-youtube" />
+              <a href="https://www.youtube.com/">
+                <i className="fab fa-youtube" style={{ color: "red" }} />
+              </a>
             </Link>
             <Link
               class="social-icon-link twitter"
@@ -65,7 +71,9 @@ function Footer() {
               target="_blank"
               aria-label="Twitter"
             >
-              <i className="fab fa-twitter" />
+              <a href="https://twitter.com/" style={{ color: "#00BFFF" }}>
+                <i className="fab fa-twitter" />
+              </a>
             </Link>
             <Link
               class="social-icon-link twitter"
@@ -73,7 +81,12 @@ function Footer() {
               target="_blank"
               aria-label="LinkedIn"
             >
-              <i className="fab fa-linkedin" />
+              <a
+                href="https://www.linkedin.com/"
+                style={{ color: "Slate Blue" }}
+              >
+                <i className="fab fa-linkedin" />
+              </a>
             </Link>
           </div>
         </div>
