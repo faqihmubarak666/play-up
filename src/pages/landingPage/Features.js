@@ -11,7 +11,6 @@ import { connect } from "react-redux";
 export class Features extends Component {
   render() {
     const { allFeature } = this.props;
-    console.log("feature landing page", allFeature);
     return (
       <div>
         <Container>
