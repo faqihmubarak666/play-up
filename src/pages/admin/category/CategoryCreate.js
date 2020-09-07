@@ -56,11 +56,14 @@ const CategoryCreate = (props) => {
         <Modal.Footer>
           <Button
             onClick={() => createNewCategory()}
-            style={{ backgroundColor: "blue" }}
+            style={{ backgroundColor: "#0ac1a5" }}
           >
             Submit
           </Button>
-          <Button onClick={() => onHide()} style={{ backgroundColor: "blue" }}>
+          <Button
+            onClick={() => onHide()}
+            style={{ backgroundColor: "#0ac1a5" }}
+          >
             Cancel
           </Button>
         </Modal.Footer>

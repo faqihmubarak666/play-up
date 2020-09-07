@@ -63,8 +63,8 @@ class CategoryContainer extends Component {
     })
       .then((response) => {
         if (
-          this.state.categoryName == "" ||
-          (this.state.categoryImage == "" && response.code !== 200)
+          this.state.categoryName === "" ||
+          (this.state.categoryImage === "" && response.code !== 200)
         ) {
           swal("Create New Category Failed !!!");
         } else {
@@ -79,6 +79,7 @@ class CategoryContainer extends Component {
             ...this.state,
             categoryName: "",
             categoryImage: "",
+            isLoaded: !this.state.isLoaded,
           });
         }
       })
@@ -113,6 +114,7 @@ class CategoryContainer extends Component {
             id: "",
             categoryName: "",
             categoryImage: "",
+            isLoaded: !this.state.isLoaded,
           });
         }
       })
@@ -149,6 +151,9 @@ class CategoryContainer extends Component {
               "success"
             );
             this.loadData();
+            this.setState({
+              isLoaded: !this.state.isLoaded,
+            });
           }
         });
       } else {

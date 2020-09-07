@@ -1,9 +1,7 @@
-// import React, { Component } from "react";
-import Navbar from "../components/Navbar";
-import { SideBar } from "../components/SideBar";
-import { connect } from "react-redux";
-
 import React from "react";
+import Navbar from "../components/Navbar";
+import SideBar from "../components/SideBar";
+import { connect } from "react-redux";
 
 const MenuUtama = (props) => {
   const { admin } = props;

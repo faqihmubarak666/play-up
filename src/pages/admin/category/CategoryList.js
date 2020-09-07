@@ -17,7 +17,11 @@ const CategoryList = (props) => {
         <div>
           <button
             onClick={() => handleShowModalCreate()}
-            style={{ float: "left", backgroundColor: "blue", color: "white" }}
+            style={{
+              float: "left",
+              backgroundColor: "#0ac1a5",
+              color: "white",
+            }}
           >
             <i class="fa fa-plus" aria-hidden="true"></i> New Category
           </button>

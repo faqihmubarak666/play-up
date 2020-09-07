@@ -86,6 +86,7 @@ export class FeatureContainer extends Component {
             featureName: "",
             featureDescription: "",
             featureImage: "",
+            isLoaded: !this.state.isLoaded,
           });
         }
       })
@@ -124,6 +125,7 @@ export class FeatureContainer extends Component {
             featureName: "",
             featureDescription: "",
             featureImage: "",
+            isLoaded: !this.state.isLoaded,
           });
         }
       })
@@ -160,6 +162,9 @@ export class FeatureContainer extends Component {
               "success"
             );
             this.loadData();
+            this.setState({
+              isLoaded: !this.state.isLoaded,
+            });
           }
         });
       } else {

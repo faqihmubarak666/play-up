@@ -70,11 +70,14 @@ const FeatureCreate = (props) => {
         <Modal.Footer>
           <Button
             onClick={() => createNewFeature()}
-            style={{ backgroundColor: "blue" }}
+            style={{ backgroundColor: "#0ac1a5" }}
           >
             Submit
           </Button>
-          <Button onClick={() => onHide()} style={{ backgroundColor: "blue" }}>
+          <Button
+            onClick={() => onHide()}
+            style={{ backgroundColor: "#0ac1a5" }}
+          >
             Cancel
           </Button>
         </Modal.Footer>

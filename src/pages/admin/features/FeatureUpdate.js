@@ -90,11 +90,11 @@ const FeatureUpdate = (props) => {
                 featureImage
               )
             }
-            style={{ backgroundColor: "blue" }}
+            style={{ backgroundColor: "#0ac1a5" }}
           >
             Save
           </Button>
-          <Button onClick={onHide} style={{ backgroundColor: "blue" }}>
+          <Button onClick={onHide} style={{ backgroundColor: "#0ac1a5" }}>
             Cancel
           </Button>
         </Modal.Footer>

@@ -9,7 +9,7 @@ import PlayVideo from "../pages/landingPage/PlayVideo";
 import { getAllCategory } from "../pages/admin/category/CategoryService";
 import { getAllFeature } from "../pages/admin/features/FeatureService";
 import { connect } from "react-redux";
-import { SideBar } from "./SideBar";
+import SideBar from "./SideBar";
 
 const Navbar = (props) => {
   const [click, setClick] = useState(false);
