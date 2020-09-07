@@ -90,16 +90,6 @@ const Navbar = (props) => {
                   Category
                 </Link>
               </li>
-
-              <li className="nav-item">
-                <Link
-                  to="/sign-in"
-                  className="nav-links"
-                  onClick={closeMobileMenu}
-                >
-                  Sign In
-                </Link>
-              </li>
             </ul>
           </div>
         </nav>
@@ -107,7 +97,6 @@ const Navbar = (props) => {
           <Route path="/" exact component={Home} />
           <Route path="/features" component={Features} />
           <Route path="/category" component={Category} />
-          <Route path="/sign-in" component={SignInContainer} />
           <Route path="/play-video" component={PlayVideo} />
         </Switch>
       </BrowserRouter>

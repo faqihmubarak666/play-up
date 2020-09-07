@@ -2,11 +2,16 @@ import React, { Component } from "react";
 import "../style/SideBar.css";
 import swal from "sweetalert";
 import Navbar from "./Navbar";
-import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
+import {
+  BrowserRouter,
+  Route,
+  Link,
+  Switch,
+  withRouter,
+} from "react-router-dom";
 import UserContainer from "../pages/admin/users/UserContainer";
 import Dashboard from "../pages/admin/Dashboard";
 import { connect } from "react-redux";
-import Header from "./Header";
 import ScheduleContainer from "../pages/admin/scheduleMatch/ScheduleContainer";
 import CategoryContainer from "../pages/admin/category/CategoryContainer";
 import FeatureContainer from "../pages/admin/features/FeatureContainer";
@@ -34,9 +39,9 @@ export class SideBar extends Component {
         this.setState({
           logoutPage: !this.state.logoutPage,
         });
-        // this.props.history.push({
-        //   pathname: "/",
-        // });
+        this.props.history.push({
+          pathname: "/",
+        });
       } else {
         swal("Logout cancel!");
       }
@@ -68,12 +73,10 @@ export class SideBar extends Component {
             </a>
             {/* Sidebar */}
             <div className="sidebar">
-              {/* Sidebar user panel (optional) */}
               <div className="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div className="image">
                   <img
                     src={admin.photo}
-                    // className="img-circle elevation-2"
                     style={{
                       height: "50px",
                       width: "50px",
@@ -195,7 +198,7 @@ export class SideBar extends Component {
             </div>
           </aside>
           <Switch>
-            <Route path="/admin" component={Dashboard} />
+            <Route path="/admin" exact component={Dashboard} />
             <Route path="/all-user" component={UserContainer} />
             <Route path="/match-schedule" component={ScheduleContainer} />
             <Route path="/features" component={FeatureContainer} />
@@ -213,4 +216,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(SideBar);
+export default withRouter(connect(mapStateToProps)(SideBar));

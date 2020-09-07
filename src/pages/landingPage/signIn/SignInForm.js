@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import Login from "../../../image/undraw_secure_login_pdn4.svg";
-import Footer from "../../../component/Footer";
-import Loading from "../../../image/animation_500_kenxqlc5.gif";
+import Footer from "../../../components/Footer";
 import App from "../../../App";
+import Navbar from "../../../components/Navbar";
 
 const SignInForm = (props) => {
   const {
@@ -13,15 +13,13 @@ const SignInForm = (props) => {
     password,
     usernameInvalid,
     passwordInvalid,
-    isLoaded,
     handleChangeInput,
     getDataAdmin,
   } = props;
   return (
     <div>
+      <Navbar />
       <div className="container-login">
-        {/* // <div>
-      //   {isLoaded ? ( */}
         <Form className="login-form">
           <Container>
             <Row>
@@ -76,16 +74,6 @@ const SignInForm = (props) => {
           </Container>
         </Form>
         <Footer />
-        {/* </div> */}
-        {/* // ) : (
-        //   <img
-        //     src={Loading}
-        //     alt="loading"
-        //     style={{
-        //       marginTop: "40px",
-        //     }}
-        //   />
-        // )} */}
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import FiturChat from "../../image/undraw_chatting_2yvo(1).svg";
 import SearchPeople from "../../image/undraw_people_search_wctu.svg";
 import Winner from "../../image/undraw_winners_ao2o.svg";
-import Footer from "../../component/Footer";
+import Footer from "../../components/Footer";
 import { connect } from "react-redux";
 
 export class Features extends Component {

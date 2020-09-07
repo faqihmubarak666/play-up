@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "../../../style/Login.css";
 import swal from "sweetalert";
-import SideBar from "../../../component/SideBar";
+import SideBar from "../../../components/SideBar";
 import { login } from "./SignInService";
 import SignInForm from "./SignInForm";
 import { connect } from "react-redux";
@@ -45,7 +45,6 @@ class SignInContainer extends Component {
         password: this.state.password,
       })
         .then((response) => {
-          console.log(response);
           if (response.data !== null) {
             const data = response.data;
             this.props.GetAdmin(data);
@@ -54,6 +53,7 @@ class SignInContainer extends Component {
               adminPage: !this.state.adminPage,
               isLoaded: !this.state.isLoaded,
             });
+
             this.props.history.push({
               pathname: "/admin",
             });
@@ -63,6 +63,7 @@ class SignInContainer extends Component {
           }
         })
         .catch((err) => {
+          console.log("error", err);
           swal("Login Invalid", "You clicked the button!", "error");
         });
     }

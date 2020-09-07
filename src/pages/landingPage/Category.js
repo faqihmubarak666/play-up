@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "../../style/Category.css";
 import "../../style/Footer.css";
 import Badminton from "../../image/category_badminton.jpg";
-import Footer from "../../component/Footer";
+import Footer from "../../components/Footer";
 import { connect } from "react-redux";
 
 export class Category extends Component {

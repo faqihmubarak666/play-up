@@ -10,7 +10,7 @@ import swal from "sweetalert";
 import FeatureList from "./FeatureList";
 import FeatureCreate from "./FeatureCreate";
 import FeatureUpdate from "./FeatureUpdate";
-import Navbar from "../../../component/Navbar";
+import Navbar from "../../../components/Navbar";
 
 export class FeatureContainer extends Component {
   constructor(props) {

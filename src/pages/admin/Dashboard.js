@@ -29,7 +29,7 @@ export class Dashboard extends Component {
         </Row>
         <Row
           style={{
-            margin: "30px  120px auto",
+            margin: "30px  40px auto",
           }}
         >
           <Col>
