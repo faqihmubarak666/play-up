@@ -15,6 +15,8 @@ import { connect } from "react-redux";
 import ScheduleContainer from "../pages/admin/scheduleMatch/ScheduleContainer";
 import CategoryContainer from "../pages/admin/category/CategoryContainer";
 import FeatureContainer from "../pages/admin/features/FeatureContainer";
+import Home from "../pages/landingPage/Home";
+import MenuUtama from "../pages/MenuUtama";
 
 export class SideBar extends Component {
   constructor(props) {
@@ -39,9 +41,6 @@ export class SideBar extends Component {
         this.setState({
           logoutPage: !this.state.logoutPage,
         });
-        this.props.history.push({
-          pathname: "/",
-        });
       } else {
         swal("Logout cancel!");
       }
@@ -49,12 +48,12 @@ export class SideBar extends Component {
   };
 
   render() {
+    const { admin } = this.props;
+    console.log("data admin sidebar", admin);
+
     if (this.state.logoutPage) {
       return <Navbar />;
     }
-
-    const { admin } = this.props;
-
     return (
       <div>
         <BrowserRouter>
@@ -76,7 +75,7 @@ export class SideBar extends Component {
               <div className="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div className="image">
                   <img
-                    src={admin.photo}
+                    // src={admin.data.photo}
                     style={{
                       height: "50px",
                       width: "50px",
@@ -95,7 +94,7 @@ export class SideBar extends Component {
                       marginTop: "5px",
                     }}
                   >
-                    {admin.user_full_name}
+                    {/* {admin.data.user_full_name} */}
                   </a>
                 </div>
               </div>

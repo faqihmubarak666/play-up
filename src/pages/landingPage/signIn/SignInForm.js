@@ -4,8 +4,6 @@ import { Container, Row, Col } from "react-bootstrap";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import Login from "../../../image/undraw_secure_login_pdn4.svg";
 import Footer from "../../../components/Footer";
-import App from "../../../App";
-import Navbar from "../../../components/Navbar";
 
 const SignInForm = (props) => {
   const {
@@ -18,7 +16,6 @@ const SignInForm = (props) => {
   } = props;
   return (
     <div>
-      <Navbar />
       <div className="container-login">
         <Form className="login-form">
           <Container>
@@ -60,21 +57,21 @@ const SignInForm = (props) => {
                     onChange={(event) => handleChangeInput(event)}
                   />
                 </FormGroup>
-                <Link to="/admin">
-                  <Button
-                    className="btn-lg btn-dark btn-block"
-                    onClick={() => getDataAdmin()}
-                    style={{ backgroundColor: "#2c3c5b" }}
-                  >
-                    Login
-                  </Button>
-                </Link>
+                {/* <Link to="/admin"> */}
+                <Button
+                  className="btn-lg btn-dark btn-block"
+                  onClick={() => getDataAdmin()}
+                  style={{ backgroundColor: "#2c3c5b" }}
+                >
+                  Login
+                </Button>
+                {/* </Link> */}
               </Col>
             </Row>
           </Container>
         </Form>
-        <Footer />
       </div>
+      <Footer />
     </div>
   );
 };

@@ -9,6 +9,7 @@ const Users = (state = initialState, action) => {
       return { ...state, allUser: action.data };
     case "GET_ADMIN":
       return { ...state, admin: action.data };
+
     default:
       return state;
   }

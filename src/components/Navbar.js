@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Button } from "./Button";
 import "../style/Navbar.css";
 import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
 import Home from "../pages/landingPage/Home";
@@ -10,6 +9,7 @@ import PlayVideo from "../pages/landingPage/PlayVideo";
 import { getAllCategory } from "../pages/admin/category/CategoryService";
 import { getAllFeature } from "../pages/admin/features/FeatureService";
 import { connect } from "react-redux";
+import { SideBar } from "./SideBar";
 
 const Navbar = (props) => {
   const [click, setClick] = useState(false);
@@ -47,6 +47,11 @@ const Navbar = (props) => {
   };
 
   window.addEventListener("resize", showButton);
+
+  const { adminPage } = props;
+  if (adminPage) {
+    return <SideBar />;
+  }
 
   return (
     <>
@@ -97,6 +102,7 @@ const Navbar = (props) => {
           <Route path="/" exact component={Home} />
           <Route path="/features" component={Features} />
           <Route path="/category" component={Category} />
+          <Route path="/sign-in" component={SignInContainer} />
           <Route path="/play-video" component={PlayVideo} />
         </Switch>
       </BrowserRouter>
