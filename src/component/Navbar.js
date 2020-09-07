@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
 import Home from "../pages/landingPage/Home";
 import Features from "../pages/landingPage/Features";
 import Category from "../pages/landingPage/Category";
-import SignIn from "../pages/landingPage/signUp/SignIn";
+import SignInContainer from "../pages/landingPage/signIn/SignInContainer";
 import PlayVideo from "../pages/landingPage/PlayVideo";
 import { getAllCategory } from "../pages/admin/category/CategoryService";
 import { getAllFeature } from "../pages/admin/features/FeatureService";
@@ -107,7 +107,7 @@ const Navbar = (props) => {
           <Route path="/" exact component={Home} />
           <Route path="/features" component={Features} />
           <Route path="/category" component={Category} />
-          <Route path="/sign-in" component={SignIn} />
+          <Route path="/sign-in" component={SignInContainer} />
           <Route path="/play-video" component={PlayVideo} />
         </Switch>
       </BrowserRouter>
