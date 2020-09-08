@@ -26,7 +26,8 @@ export class FeatureContainer extends Component {
       isLoaded: false,
       dataFeature: {},
       showTableFeatureById: false,
-      search: "",
+      filtered: [],
+      inputValue: "",
     };
   }
 
@@ -199,6 +200,20 @@ export class FeatureContainer extends Component {
     });
   };
 
+  onSearch = (data) => {
+    this.setState({
+      showTableFeatureById: !this.state.showTableFeatureById,
+
+      filtered: this.props.allFeature.filter((feature) => {
+        return (
+          feature.feature_id.toLowerCase() +
+          feature.feature_name.toLowerCase() +
+          feature.feature_description.toLowerCase()
+        ).includes(data.toLowerCase());
+      }),
+    });
+  };
+
   render() {
     return (
       <div className="content-wrapper">
@@ -208,13 +223,14 @@ export class FeatureContainer extends Component {
             handleShowModalUpdate={this.handleShowModalUpdate}
             handleDeleteFeature={this.handleDeleteFeature}
             isLoaded={this.state.isLoaded}
-            search={this.state.search}
+            inputValue={this.state.inputValue}
             handleChangeInput={this.handleChangeInput}
-            featureById={this.featureById}
+            onSearch={this.onSearch}
           />
         ) : (
           <FeatureById
             handleShowTableFeatureById={this.handleShowTableFeatureById}
+            filtered={this.state.filtered}
           />
         )}
         {!this.state.showModalCreate ? null : (
@@ -245,6 +261,12 @@ export class FeatureContainer extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    allFeature: state.rGetDataFeature.Feature.allFeature,
+  };
+};
+
 const mapDispatchToProps = (dispatch) => {
   return {
     GetAllFeature: (data) => dispatch({ type: "GET_FEATURE", data: data }),
@@ -253,4 +275,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(FeatureContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(FeatureContainer);

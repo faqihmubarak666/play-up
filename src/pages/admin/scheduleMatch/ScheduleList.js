@@ -11,8 +11,8 @@ const ScheduleList = (props) => {
   const {
     allSchedule,
     isLoaded,
-    scheduleById,
-    search,
+    inputValue,
+    onSearch,
     handleChangeInput,
   } = props;
 
@@ -30,7 +30,8 @@ const ScheduleList = (props) => {
         }}
       >
         <FormControl
-          name="search"
+          value={inputValue}
+          name="inputValue"
           type="text"
           placeholder="Search..."
           className="mr-sm-2"
@@ -38,7 +39,7 @@ const ScheduleList = (props) => {
           onChange={(event) => handleChangeInput(event)}
         />
         <Button
-          onClick={() => scheduleById(search)}
+          onClick={() => onSearch(inputValue)}
           style={{ borderRadius: "15px", backgroundColor: "#0ac1a5" }}
         >
           Search

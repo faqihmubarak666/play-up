@@ -11,8 +11,8 @@ const CategoryList = (props) => {
     handleShowModalUpdate,
     handleDeleteCategory,
     isLoaded,
-    search,
-    categoryById,
+    inputValue,
+    onSearch,
     handleChangeInput,
   } = props;
   return (
@@ -29,7 +29,8 @@ const CategoryList = (props) => {
         }}
       >
         <FormControl
-          name="search"
+          value={inputValue}
+          name="inputValue"
           type="text"
           placeholder="Search..."
           className="mr-sm-2"
@@ -37,7 +38,7 @@ const CategoryList = (props) => {
           onChange={(event) => handleChangeInput(event)}
         />
         <Button
-          onClick={() => categoryById(search)}
+          onClick={() => onSearch(inputValue)}
           style={{ borderRadius: "15px", backgroundColor: "#0ac1a5" }}
         >
           Search

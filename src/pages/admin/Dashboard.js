@@ -10,7 +10,7 @@ export class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: 1,
+      page: 0,
       limit: 1000,
     };
   }
@@ -28,8 +28,8 @@ export class Dashboard extends Component {
   };
 
   loadDataSchedule = () => {
-    getAllSchedule().then((response) => {
-      const data = response.data;
+    getAllSchedule(this.state.page, this.state.limit).then((response) => {
+      const data = response.data.result;
       this.props.GetAllSchedule(data);
     });
   };

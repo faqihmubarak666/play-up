@@ -6,7 +6,7 @@ import Col from "react-bootstrap/Col";
 import ListGroup from "react-bootstrap/ListGroup";
 
 const ScheduleById = (props) => {
-  const { scheduleById, handleShowTableScheduleById } = props;
+  const { filtered, handleShowTableScheduleById } = props;
   return (
     <div style={{ backgroundColor: "white" }}>
       <button
@@ -37,67 +37,62 @@ const ScheduleById = (props) => {
           </tr>
         </thead>
         <tbody>
-          <>
-            <tr>
-              <td>{!scheduleById ? null : scheduleById.schedule_id}</td>
+          {!filtered
+            ? null
+            : filtered.map((data) => (
+                <>
+                  <tr>
+                    <td>{data.schedule_id}</td>
 
-              <td>{!scheduleById ? null : scheduleById.schedule_status}</td>
-              <td>{!scheduleById ? null : scheduleById.schedule_result}</td>
-            </tr>
-            <tr>
-              <td colSpan="7">
-                <Row>
-                  <Col>
-                    <ListGroup.Item
-                      style={{
-                        backgroundColor: "Blue",
-                        textTransform: "uppercase",
-                        color: "black",
-                      }}
-                    >
-                      ID :{" "}
-                      {!scheduleById ? null : scheduleById.schedule_user_id}
-                      <br />
-                      {!scheduleById ? null : scheduleById.schedule_user_name}
-                    </ListGroup.Item>
-                  </Col>
-                  <span style={{ textAlign: "center", margin: "auto" }}>
-                    VS
-                  </span>
-                  <Col>
-                    <ListGroup.Item
-                      style={{
-                        backgroundColor: "Red",
-                        textTransform: "uppercase",
-                        color: "black",
-                      }}
-                    >
-                      ID :{" "}
-                      {!scheduleById ? null : scheduleById.schedule_opponent_id}
-                      <br />
-                      {!scheduleById ? null : scheduleById.schedule_opponent}
-                    </ListGroup.Item>
-                  </Col>
-                </Row>
-              </td>
-            </tr>
-            <tr>
-              <td colSpan="7" style={{ textTransform: "uppercase" }}>
-                {!scheduleById ? null : scheduleById.schedule_time} AT{" "}
-                {!scheduleById ? null : scheduleById.schedule_location}
-              </td>
-            </tr>
-          </>
+                    <td>{data.schedule_status}</td>
+                    <td>{data.schedule_result}</td>
+                  </tr>
+                  <tr>
+                    <td colSpan="7">
+                      <Row>
+                        <Col>
+                          <ListGroup.Item
+                            style={{
+                              backgroundColor: "Blue",
+                              textTransform: "uppercase",
+                              color: "black",
+                            }}
+                          >
+                            ID :{data.schedule_user_id}
+                            <br />
+                            {data.schedule_user_name}
+                          </ListGroup.Item>
+                        </Col>
+                        <span style={{ textAlign: "center", margin: "auto" }}>
+                          VS
+                        </span>
+                        <Col>
+                          <ListGroup.Item
+                            style={{
+                              backgroundColor: "Red",
+                              textTransform: "uppercase",
+                              color: "black",
+                            }}
+                          >
+                            ID :{data.schedule_opponent_id}
+                            <br />
+                            {data.schedule_opponent}
+                          </ListGroup.Item>
+                        </Col>
+                      </Row>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colSpan="7" style={{ textTransform: "uppercase" }}>
+                      {data.schedule_time} AT {data.schedule_location}
+                    </td>
+                  </tr>
+                </>
+              ))}
         </tbody>
       </Table>
     </div>
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    scheduleById: state.rGetDataSchedule.Schedule.scheduleById,
-  };
-};
-
-export default connect(mapStateToProps)(ScheduleById);
+export default ScheduleById;

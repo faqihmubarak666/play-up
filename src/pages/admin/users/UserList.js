@@ -7,7 +7,7 @@ import Loading from "../../../image/animation_500_kesozuti.gif";
 import { Form, FormControl, Button } from "react-bootstrap";
 
 const UserList = (props) => {
-  const { allUser, isLoaded, userById, search, handleChangeInput } = props;
+  const { allUser, isLoaded, handleChangeInput, onSearch, inputValue } = props;
   return (
     <div style={{ backgroundColor: "white" }}>
       <Form
@@ -22,7 +22,8 @@ const UserList = (props) => {
         }}
       >
         <FormControl
-          name="search"
+          value={inputValue}
+          name="inputValue"
           type="text"
           placeholder="Search..."
           className="mr-sm-2"
@@ -30,7 +31,7 @@ const UserList = (props) => {
           onChange={(event) => handleChangeInput(event)}
         />
         <Button
-          onClick={() => userById(search)}
+          onClick={() => onSearch(inputValue)}
           style={{ borderRadius: "15px", backgroundColor: "#0ac1a5" }}
         >
           Search

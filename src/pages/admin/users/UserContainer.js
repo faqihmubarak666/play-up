@@ -14,7 +14,8 @@ class UserContainer extends Component {
       page: 1,
       limit: 3,
       totalResult: "",
-      search: "",
+      filtered: [],
+      inputValue: "",
     };
   }
 
@@ -72,6 +73,23 @@ class UserContainer extends Component {
     });
   };
 
+  onSearch = (data) => {
+    this.setState({
+      showTableUserById: !this.state.showTableUserById,
+
+      filtered: this.props.allUser.filter((user) => {
+        console.log("all user", user);
+        return (
+          user.id.toLowerCase() +
+          user.username.toLowerCase() +
+          user.user_full_name.toLowerCase() +
+          user.gender.toLowerCase() +
+          user.email.toLowerCase()
+        ).includes(data.toLowerCase());
+      }),
+    });
+  };
+
   render() {
     return (
       <div className="content-wrapper">
@@ -84,9 +102,9 @@ class UserContainer extends Component {
               handleButton={this.handleButton}
               handleButtonBack={this.handleButtonBack}
               handleButtonNext={this.handleButtonNext}
-              userById={this.userById}
-              search={this.state.search}
               handleChangeInput={this.handleChangeInput}
+              onSearch={this.onSearch}
+              inputValue={this.state.inputValue}
             />
             <UserPagination
               onSetLimit={this.onSetLimit}
@@ -97,12 +115,21 @@ class UserContainer extends Component {
             />
           </div>
         ) : (
-          <UserById handleShowTableUserById={this.handleShowTableUserById} />
+          <UserById
+            handleShowTableUserById={this.handleShowTableUserById}
+            filtered={this.state.filtered}
+          />
         )}
       </div>
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    allUser: state.rGetDataUser.Users.allUser,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -111,4 +138,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(UserContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(UserContainer);

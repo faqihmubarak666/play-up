@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import Table from "react-bootstrap/Table";
 
 const CategoryById = (props) => {
-  const { categoryById, handleShowTableCategoryById } = props;
+  const { filtered, handleShowTableCategoryById } = props;
   return (
     <div style={{ backgroundColor: "white" }}>
       <button
@@ -34,31 +34,29 @@ const CategoryById = (props) => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>{!categoryById ? null : categoryById.category_id}</td>
-            <td>{!categoryById ? null : categoryById.category_name}</td>
-            <td>
-              <img
-                src={!categoryById ? null : categoryById.category_image}
-                alt="image category"
-                style={{
-                  height: "50px",
-                  width: "50px",
-                  borderRadius: "50px",
-                }}
-              />
-            </td>
-          </tr>
+          {!filtered
+            ? null
+            : filtered.map((data) => (
+                <tr>
+                  <td>{data.category_id}</td>
+                  <td>{data.category_name}</td>
+                  <td>
+                    <img
+                      src={data.category_image}
+                      alt="image category"
+                      style={{
+                        height: "50px",
+                        width: "50px",
+                        borderRadius: "50px",
+                      }}
+                    />
+                  </td>
+                </tr>
+              ))}
         </tbody>
       </Table>
     </div>
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    categoryById: state.rGetDataCategory.Category.categoryById,
-  };
-};
-
-export default connect(mapStateToProps)(CategoryById);
+export default CategoryById;

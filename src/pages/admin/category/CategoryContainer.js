@@ -24,8 +24,9 @@ class CategoryContainer extends Component {
       showModalUpdate: false,
       isLoaded: false,
       dataCategory: {},
-      search: "",
       showTableCategoryById: false,
+      filtered: [],
+      inputValue: "",
     };
   }
 
@@ -185,6 +186,19 @@ class CategoryContainer extends Component {
     });
   };
 
+  onSearch = (data) => {
+    this.setState({
+      showTableCategoryById: !this.state.showTableCategoryById,
+
+      filtered: this.props.allCategory.filter((category) => {
+        return (
+          category.category_id.toLowerCase() +
+          category.category_name.toLowerCase()
+        ).includes(data.toLowerCase());
+      }),
+    });
+  };
+
   render() {
     return (
       <div className="content-wrapper">
@@ -194,13 +208,14 @@ class CategoryContainer extends Component {
             handleShowModalUpdate={this.handleShowModalUpdate}
             handleDeleteCategory={this.handleDeleteCategory}
             isLoaded={this.state.isLoaded}
-            search={this.state.search}
-            categoryById={this.categoryById}
+            inputValue={this.state.inputValue}
+            onSearch={this.onSearch}
             handleChangeInput={this.handleChangeInput}
           />
         ) : (
           <CategoryById
             handleShowTableCategoryById={this.handleShowTableCategoryById}
+            filtered={this.state.filtered}
           />
         )}
         {!this.state.showModalCreate ? null : (
@@ -230,6 +245,12 @@ class CategoryContainer extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    allCategory: state.rGetDataCategory.Category.allCategory,
+  };
+};
+
 const mapDispatchToProps = (dispatch) => {
   return {
     GetAllCategory: (data) => dispatch({ type: "GET_CATEGORY", data: data }),
@@ -238,4 +259,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(CategoryContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(CategoryContainer);

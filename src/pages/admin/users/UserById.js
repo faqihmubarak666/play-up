@@ -4,7 +4,7 @@ import "../../../style/ListUser.css";
 import Table from "react-bootstrap/Table";
 
 const UserById = (props) => {
-  const { userById, handleShowTableUserById } = props;
+  const { handleShowTableUserById, filtered } = props;
   return (
     <div style={{ backgroundColor: "white" }}>
       <button
@@ -39,35 +39,32 @@ const UserById = (props) => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            {/* <td>{index + 1}</td> */}
-            <td>{!userById ? null : userById.id}</td>
-            <td>{!userById ? null : userById.username}</td>
-            <td>{!userById ? null : userById.user_full_name}</td>
-            <td>{!userById ? null : userById.gender}</td>
-            <td>{!userById ? null : userById.email}</td>
-            <td>
-              <img
-                src={!userById ? null : userById.photo}
-                alt="user"
-                style={{
-                  height: "50px",
-                  width: "50px",
-                  borderRadius: "50px",
-                }}
-              />
-            </td>
-          </tr>
+          {!filtered
+            ? null
+            : filtered.map((data) => (
+                <tr>
+                  <td>{data.id}</td>
+                  <td>{data.username}</td>
+                  <td>{data.user_full_name}</td>
+                  <td>{data.gender}</td>
+                  <td>{data.email}</td>
+                  <td>
+                    <img
+                      src={data.photo}
+                      alt="user"
+                      style={{
+                        height: "50px",
+                        width: "50px",
+                        borderRadius: "50px",
+                      }}
+                    />
+                  </td>
+                </tr>
+              ))}
         </tbody>
       </Table>
     </div>
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    userById: state.rGetDataUser.Users.userById,
-  };
-};
-
-export default connect(mapStateToProps)(UserById);
+export default UserById;

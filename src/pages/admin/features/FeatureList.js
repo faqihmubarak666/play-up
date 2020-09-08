@@ -11,9 +11,9 @@ const FeatureList = (props) => {
     handleShowModalUpdate,
     handleDeleteFeature,
     isLoaded,
-    search,
     handleChangeInput,
-    featureById,
+    inputValue,
+    onSearch,
   } = props;
   return (
     <div style={{ backgroundColor: "white" }}>
@@ -29,7 +29,8 @@ const FeatureList = (props) => {
         }}
       >
         <FormControl
-          name="search"
+          value={inputValue}
+          name="inputValue"
           type="text"
           placeholder="Search..."
           className="mr-sm-2"
@@ -37,7 +38,7 @@ const FeatureList = (props) => {
           onChange={(event) => handleChangeInput(event)}
         />
         <Button
-          onClick={() => featureById(search)}
+          onClick={() => onSearch(inputValue)}
           style={{ borderRadius: "15px", backgroundColor: "#0ac1a5" }}
         >
           Search

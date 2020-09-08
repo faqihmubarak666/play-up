@@ -14,7 +14,8 @@ class ScheduleContainer extends Component {
       limit: 3,
       totalResult: "",
       showTableScheduleById: false,
-      search: "",
+      filtered: [],
+      inputValue: "",
     };
   }
 
@@ -72,6 +73,24 @@ class ScheduleContainer extends Component {
     });
   };
 
+  onSearch = (data) => {
+    this.setState({
+      showTableScheduleById: !this.state.showTableScheduleById,
+
+      filtered: this.props.allSchedule.filter((schedule) => {
+        return (
+          schedule.schedule_id.toLowerCase() +
+          schedule.schedule_user_name.toLowerCase() +
+          schedule.schedule_opponent.toLowerCase() +
+          schedule.schedule_time.toLowerCase() +
+          schedule.schedule_location.toLowerCase() +
+          schedule.schedule_opponent_id.toLowerCase() +
+          schedule.schedule_user_id.toLowerCase()
+        ).includes(data.toLowerCase());
+      }),
+    });
+  };
+
   render() {
     return (
       <div className="content-wrapper">
@@ -79,8 +98,8 @@ class ScheduleContainer extends Component {
           <div>
             <ScheduleList
               isLoaded={this.state.isLoaded}
-              scheduleById={this.scheduleById}
-              search={this.state.search}
+              onSearch={this.onSearch}
+              inputValue={this.state.inputValue}
               handleChangeInput={this.handleChangeInput}
             />
             <SchedulePagination
@@ -94,12 +113,19 @@ class ScheduleContainer extends Component {
         ) : (
           <ScheduleById
             handleShowTableScheduleById={this.handleShowTableScheduleById}
+            filtered={this.state.filtered}
           />
         )}
       </div>
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    allSchedule: state.rGetDataSchedule.Schedule.allSchedule,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -109,4 +135,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(ScheduleContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(ScheduleContainer);

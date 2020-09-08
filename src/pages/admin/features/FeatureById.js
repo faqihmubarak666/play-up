@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import Table from "react-bootstrap/Table";
 
 const FeatureById = (props) => {
-  const { featureById, handleShowTableFeatureById } = props;
+  const { filtered, handleShowTableFeatureById } = props;
   return (
     <div style={{ backgroundColor: "white" }}>
       <button
@@ -35,32 +35,30 @@ const FeatureById = (props) => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>{!featureById ? null : featureById.feature_id}</td>
-            <td>{!featureById ? null : featureById.feature_name}</td>
-            <td>{!featureById ? null : featureById.feature_description}</td>
-            <td>
-              <img
-                src={!featureById ? null : featureById.feature_image}
-                alt="image feature"
-                style={{
-                  height: "50px",
-                  width: "50px",
-                  borderRadius: "50px",
-                }}
-              />
-            </td>
-          </tr>
+          {!filtered
+            ? null
+            : filtered.map((data) => (
+                <tr>
+                  <td>{data.feature_id}</td>
+                  <td>{data.feature_name}</td>
+                  <td>{data.feature_description}</td>
+                  <td>
+                    <img
+                      src={data.feature_image}
+                      alt="image feature"
+                      style={{
+                        height: "50px",
+                        width: "50px",
+                        borderRadius: "50px",
+                      }}
+                    />
+                  </td>
+                </tr>
+              ))}
         </tbody>
       </Table>
     </div>
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    featureById: state.rGetDataFeature.Feature.featureById,
-  };
-};
-
-export default connect(mapStateToProps)(FeatureById);
+export default FeatureById;
