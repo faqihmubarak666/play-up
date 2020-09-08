@@ -48,7 +48,6 @@ const SideBar = (props) => {
   }
 
   const { admin } = props;
-  console.log("data admin sidebar", admin);
   return (
     <div>
       <BrowserRouter>

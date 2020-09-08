@@ -12,8 +12,8 @@ export class Category extends Component {
       <div>
         {allCategory.map((data) => (
           <div className="container_category">
-            <img src={data.categoryImage} alt="badminton" />
-            <h2>{data.categoryName}</h2>
+            <img src={data.category_image} alt="badminton" />
+            <h2>{data.category_name}</h2>
           </div>
         ))}
         <Footer />

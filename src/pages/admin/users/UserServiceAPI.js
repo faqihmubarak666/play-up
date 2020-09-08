@@ -1,7 +1,9 @@
 const baseUrl = "/user";
 
-const getAllUsers = async () => {
-  const users = await fetch(baseUrl + "/users", {
+const getAllUsers = async (page, limit) => {
+  const queryParamns = `${baseUrl}/users?page=${page}&limit=${limit}`;
+
+  const users = await fetch(queryParamns, {
     method: "GET",
     headers: {
       Accept: "application/json",
@@ -11,4 +13,15 @@ const getAllUsers = async () => {
   return await users.json();
 };
 
-export { getAllUsers };
+const getUserById = async (id) => {
+  const user = await fetch(baseUrl + `/${id}`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  });
+  return await user.json();
+};
+
+export { getAllUsers, getUserById };

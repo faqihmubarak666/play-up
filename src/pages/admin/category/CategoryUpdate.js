@@ -8,7 +8,7 @@ const CategoryUpdate = (props) => {
     onHide,
     handleChangeInput,
     updateNewCategory,
-    dataCategory: { id, categoryName, categoryImage },
+    dataCategory: { category_id, category_name, category_image },
     handleUploadImage,
   } = props;
   return (
@@ -23,13 +23,13 @@ const CategoryUpdate = (props) => {
 
           <Form>
             <Form.Group controlId="formBookName">
-              <Form.Label>ID</Form.Label>
+              <Form.Label>ID CATEGORY</Form.Label>
               <Form.Control
-                defaultValue={id}
+                defaultValue={category_id}
                 type="text"
-                name="id"
+                name="category_id"
                 disabled={true}
-                placeholder="Input id"
+                placeholder="Input category id"
                 onChange={handleChangeInput}
               ></Form.Control>
             </Form.Group>
@@ -39,9 +39,9 @@ const CategoryUpdate = (props) => {
             <Form.Group controlId="formBookName">
               <Form.Label>NAME CATEGORY</Form.Label>
               <Form.Control
-                defaultValue={categoryName}
+                defaultValue={category_name}
                 type="text"
-                name="categoryName"
+                name="category_name"
                 placeholder="Input name category"
                 onChange={handleChangeInput}
               />
@@ -51,14 +51,14 @@ const CategoryUpdate = (props) => {
           <Form>
             <Form.Group controlId="formBookName">
               <img
-                src={categoryImage}
+                src={category_image}
                 style={{ width: "70px", height: "70px" }}
                 alt="*upload image"
               />
               <Form.Label>IMAGE CATEGORY</Form.Label>
               <Form.Control
                 type="file"
-                name="categoryImage"
+                name="category_image"
                 accept="image"
                 placeholder="Input image category"
                 onChange={(event) => handleUploadImage(event)}
@@ -68,7 +68,9 @@ const CategoryUpdate = (props) => {
         </Modal.Body>
         <Modal.Footer>
           <Button
-            onClick={() => updateNewCategory(id, categoryName, categoryImage)}
+            onClick={() =>
+              updateNewCategory(category_id, category_name, category_image)
+            }
             style={{ backgroundColor: "blue" }}
           >
             Save

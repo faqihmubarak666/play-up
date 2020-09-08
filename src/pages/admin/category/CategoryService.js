@@ -47,4 +47,21 @@ const deleteCategory = async (id) => {
   return category.json();
 };
 
-export { getAllCategory, createCategory, updateCategory, deleteCategory };
+const getCategoryById = async (id) => {
+  const category = await fetch(baseUrl + `/${id}`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  });
+  return await category.json();
+};
+
+export {
+  getAllCategory,
+  createCategory,
+  updateCategory,
+  deleteCategory,
+  getCategoryById,
+};

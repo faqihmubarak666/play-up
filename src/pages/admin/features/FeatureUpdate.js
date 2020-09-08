@@ -9,7 +9,12 @@ const FeatureUpdate = (props) => {
     onHide,
     handleChangeInput,
     updateNewFeature,
-    dataFeature: { id, featureName, featureDescription, featureImage },
+    dataFeature: {
+      feature_id,
+      feature_name,
+      feature_description,
+      feature_image,
+    },
     handleUploadImage,
   } = props;
   return (
@@ -24,13 +29,13 @@ const FeatureUpdate = (props) => {
 
           <Form>
             <Form.Group controlId="formBookName">
-              <Form.Label>ID</Form.Label>
+              <Form.Label>ID FEATURE</Form.Label>
               <Form.Control
-                defaultValue={id}
+                defaultValue={feature_id}
                 type="text"
-                name="id"
+                name="feature_id"
                 disabled={true}
-                placeholder="Input id"
+                placeholder="Input id feature"
                 onChange={handleChangeInput}
               ></Form.Control>
             </Form.Group>
@@ -40,9 +45,9 @@ const FeatureUpdate = (props) => {
             <Form.Group controlId="formBookName">
               <Form.Label>NAME FEATURE</Form.Label>
               <Form.Control
-                defaultValue={featureName}
+                defaultValue={feature_name}
                 type="text"
-                name="featureName"
+                name="feature_name"
                 placeholder="Input name feature"
                 onChange={handleChangeInput}
               />
@@ -53,9 +58,9 @@ const FeatureUpdate = (props) => {
             <Form.Group controlId="formBookName">
               <Form.Label>DEESCRIPTION FEATURE</Form.Label>
               <Form.Control
-                defaultValue={featureDescription}
+                defaultValue={feature_description}
                 type="text"
-                name="featureDescription"
+                name="feature_description"
                 placeholder="Input description feature"
                 onChange={handleChangeInput}
               />
@@ -65,7 +70,7 @@ const FeatureUpdate = (props) => {
           <Form>
             <Form.Group controlId="formBookName">
               <img
-                src={featureImage}
+                src={feature_image}
                 style={{ width: "70px", height: "70px" }}
                 alt="*upload image"
               />
@@ -73,7 +78,7 @@ const FeatureUpdate = (props) => {
               <Form.Control
                 type="file"
                 accept="image"
-                name="featureImage"
+                name="feature_image"
                 placeholder="Input image feature"
                 onChange={(event) => handleUploadImage(event)}
               />
@@ -84,10 +89,10 @@ const FeatureUpdate = (props) => {
           <Button
             onClick={() =>
               updateNewFeature(
-                id,
-                featureName,
-                featureDescription,
-                featureImage
+                feature_id,
+                feature_name,
+                feature_description,
+                feature_image
               )
             }
             style={{ backgroundColor: "#0ac1a5" }}

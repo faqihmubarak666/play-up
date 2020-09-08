@@ -1,6 +1,7 @@
 const initialState = {
   allUser: [],
   admin: {},
+  userById: {},
 };
 
 const Users = (state = initialState, action) => {
@@ -8,8 +9,9 @@ const Users = (state = initialState, action) => {
     case "GET_USER":
       return { ...state, allUser: action.data };
     case "GET_ADMIN":
-      console.log("redux data admin", action.data);
       return { ...state, admin: action.data };
+    case "GET_USER_BY_ID":
+      return { ...state, userById: action.data };
     default:
       return state;
   }

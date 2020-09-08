@@ -1,7 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import Table from "react-bootstrap/Table";
-import Loading from "../../../image/animation_500_kenxqlc5.gif";
+import Loading from "../../../image/animation_500_kesozuti.gif";
+import { Form, FormControl, Button } from "react-bootstrap";
 
 const CategoryList = (props) => {
   const {
@@ -10,9 +11,38 @@ const CategoryList = (props) => {
     handleShowModalUpdate,
     handleDeleteCategory,
     isLoaded,
+    search,
+    categoryById,
+    handleChangeInput,
   } = props;
   return (
     <div style={{ backgroundColor: "white" }}>
+      <Form
+        inline
+        className="form-search"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop: "20px",
+          marginBottom: "20px",
+        }}
+      >
+        <FormControl
+          name="search"
+          type="text"
+          placeholder="Search..."
+          className="mr-sm-2"
+          style={{ width: "300px", borderRadius: "15px" }}
+          onChange={(event) => handleChangeInput(event)}
+        />
+        <Button
+          onClick={() => categoryById(search)}
+          style={{ borderRadius: "15px", backgroundColor: "#0ac1a5" }}
+        >
+          Search
+        </Button>
+      </Form>
       {isLoaded ? (
         <div>
           <button
@@ -37,52 +67,52 @@ const CategoryList = (props) => {
                 <th>ID CATEGORY</th>
                 <th>NAME CATEGORY</th>
                 <th>IMAGE</th>
-                <th>STATUS CATEGORY</th>
                 <th>ACTION</th>
               </tr>
             </thead>
             <tbody>
-              {allCategory.map((data, index) => (
-                <tr>
-                  <td>{index + 1}</td>
-                  <td>{data.id}</td>
-                  <td>{data.categoryName}</td>
-                  <td>
-                    <img
-                      src={data.categoryImage}
-                      alt="image category"
-                      style={{
-                        height: "50px",
-                        width: "50px",
-                        borderRadius: "50px",
-                      }}
-                    />
-                  </td>
-                  <td>{data.categoryStatus}</td>
-                  <td>
-                    <button
-                      onClick={() => handleShowModalUpdate(data)}
-                      style={{
-                        backgroundColor: "blue",
-                        color: "white",
-                        width: "50px",
-                      }}
-                    >
-                      <i class="fa fa-pencil-square" aria-hidden="true"></i>
-                    </button>
-                    <button
-                      onClick={() => handleDeleteCategory(data.id)}
-                      style={{
-                        backgroundColor: "red",
-                        color: "white",
-                        width: "50px",
-                      }}
-                    >
-                      <i class="fa fa-trash" aria-hidden="true"></i>
-                    </button>
-                  </td>
-                </tr>
-              ))}
+              {!allCategory
+                ? null
+                : allCategory.map((data, index) => (
+                    <tr>
+                      <td>{index + 1}</td>
+                      <td>{data.category_id}</td>
+                      <td>{data.category_name}</td>
+                      <td>
+                        <img
+                          src={data.category_image}
+                          alt="image category"
+                          style={{
+                            height: "50px",
+                            width: "50px",
+                            borderRadius: "50px",
+                          }}
+                        />
+                      </td>
+                      <td>
+                        <button
+                          onClick={() => handleShowModalUpdate(data)}
+                          style={{
+                            backgroundColor: "#0ac1a5",
+                            color: "white",
+                            width: "50px",
+                          }}
+                        >
+                          <i class="fa fa-pencil-square" aria-hidden="true"></i>
+                        </button>
+                        <button
+                          onClick={() => handleDeleteCategory(data.category_id)}
+                          style={{
+                            backgroundColor: "#0ac1a5",
+                            color: "white",
+                            width: "50px",
+                          }}
+                        >
+                          <i class="fa fa-trash" aria-hidden="true"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
             </tbody>
           </Table>
         </div>

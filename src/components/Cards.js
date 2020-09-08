@@ -11,24 +11,28 @@ const Cards = (props) => {
       <div className="cards__container">
         <div className="cards__wrapper">
           <ul className="cards__items">
-            {allFeature.map((data) => (
-              <CardItem
-                src={data.featureImage}
-                text={data.featureDescription}
-                label={data.featureName}
-                path="/features"
-              />
-            ))}
+            {!allFeature
+              ? null
+              : allFeature.map((data) => (
+                  <CardItem
+                    src={data.feature_image}
+                    text={data.feature_description}
+                    label={data.feature_name}
+                    path="/features"
+                  />
+                ))}
           </ul>
           <ul className="cards__items">
-            {allCategory.map((data) => (
-              <CardItem
-                src={data.categoryImage}
-                text={data.categoryName}
-                label={data.categoryName}
-                path="/category"
-              />
-            ))}
+            {!allCategory
+              ? null
+              : allCategory.map((data) => (
+                  <CardItem
+                    src={data.category_image}
+                    text={data.category_name}
+                    label={data.category_name}
+                    path="/category"
+                  />
+                ))}
           </ul>
         </div>
       </div>

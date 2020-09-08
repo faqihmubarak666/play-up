@@ -1,10 +1,39 @@
 import React, { Component } from "react";
 import Welcome from "../../image/animation_500_ken3imlb.gif";
-import { Container, Row, Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import { connect } from "react-redux";
+import { getAllUsers } from "../admin/users/UserServiceAPI";
+import { getAllSchedule } from "../admin/scheduleMatch/ScheduleService";
 
 export class Dashboard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      page: 1,
+      limit: 1000,
+    };
+  }
+
+  componentDidMount() {
+    this.loadDataUsers();
+    this.loadDataSchedule();
+  }
+
+  loadDataUsers = () => {
+    getAllUsers(this.state.page, this.state.limit).then((response) => {
+      const data = response.data.result;
+      this.props.GetAllUser(data);
+    });
+  };
+
+  loadDataSchedule = () => {
+    getAllSchedule().then((response) => {
+      const data = response.data;
+      this.props.GetAllSchedule(data);
+    });
+  };
+
   render() {
     const { allUser, allSchedule, allCategory } = this.props;
     return (
@@ -58,7 +87,7 @@ export class Dashboard extends Component {
                     fontSize: "30px",
                   }}
                 >
-                  {allUser.length}
+                  {!allUser ? null : allUser.length}
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -89,7 +118,7 @@ export class Dashboard extends Component {
                     fontSize: "30px",
                   }}
                 >
-                  {allSchedule.length}
+                  {!allSchedule ? null : allSchedule.length}
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -120,7 +149,7 @@ export class Dashboard extends Component {
                     fontSize: "30px",
                   }}
                 >
-                  {allCategory.length}
+                  {!allCategory ? null : allCategory.length}
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -139,4 +168,11 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Dashboard);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    GetAllUser: (data) => dispatch({ type: "GET_USER", data: data }),
+    GetAllSchedule: (data) => dispatch({ type: "GET_SCHEDULE", data: data }),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

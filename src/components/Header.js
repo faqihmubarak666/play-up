@@ -8,12 +8,9 @@ import SignInContainer from "../pages/landingPage/signIn/SignInContainer";
 import PlayVideo from "../pages/landingPage/PlayVideo";
 import { SideBar } from "./SideBar";
 
-// import "../style/Header.css";
-
 export class Header extends Component {
   render() {
     const { adminPage } = this.props;
-    console.log("admin page header", adminPage);
 
     return (
       <div>

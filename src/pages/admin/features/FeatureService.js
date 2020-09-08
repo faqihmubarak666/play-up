@@ -47,4 +47,21 @@ const deleteFeature = async (id) => {
   return feature.json();
 };
 
-export { getAllFeature, createFeature, updateFeature, deleteFeature };
+const getFeatureById = async (id) => {
+  const feature = await fetch(baseUrl + `/${id}`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  });
+  return await feature.json();
+};
+
+export {
+  getAllFeature,
+  createFeature,
+  updateFeature,
+  deleteFeature,
+  getFeatureById,
+};

@@ -4,24 +4,28 @@ import {
   createCategory,
   updateCategory,
   deleteCategory,
+  getCategoryById,
 } from "./CategoryService";
 import { connect } from "react-redux";
 import swal from "sweetalert";
 import CategoryList from "./CategoryList";
 import CategoryCreate from "./CategoryCreate";
 import CategoryUpdate from "./CategoryUpdate";
+import CategoryById from "./CategoryById";
 
 class CategoryContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: "",
-      categoryName: "",
-      categoryImage: "",
+      category_id: "",
+      category_name: "",
+      category_image: "",
       showModalCreate: false,
       showModalUpdate: false,
       isLoaded: false,
       dataCategory: {},
+      search: "",
+      showTableCategoryById: false,
     };
   }
 
@@ -30,7 +34,7 @@ class CategoryContainer extends Component {
     reader.onload = () => {
       if (reader.readyState === 2) {
         this.setState({
-          categoryImage: reader.result,
+          category_image: reader.result,
         });
       }
     };
@@ -58,13 +62,13 @@ class CategoryContainer extends Component {
 
   createNewCategory = () => {
     createCategory({
-      categoryName: this.state.categoryName,
-      categoryImage: this.state.categoryImage,
+      category_name: this.state.category_name,
+      category_image: this.state.category_image,
     })
       .then((response) => {
         if (
-          this.state.categoryName === "" ||
-          (this.state.categoryImage === "" && response.code !== 200)
+          this.state.category_name === "" ||
+          (this.state.category_image === "" && response.code !== 200)
         ) {
           swal("Create New Category Failed !!!");
         } else {
@@ -77,8 +81,8 @@ class CategoryContainer extends Component {
           this.handleShowModalCreate();
           this.setState({
             ...this.state,
-            categoryName: "",
-            categoryImage: "",
+            category_name: "",
+            category_image: "",
             isLoaded: !this.state.isLoaded,
           });
         }
@@ -94,15 +98,18 @@ class CategoryContainer extends Component {
     });
   };
 
-  updateNewCategory = (id, categoryName, categoryImage) => {
+  updateNewCategory = (category_id, category_name, category_image) => {
     updateCategory({
-      id: this.state.id === "" ? id : this.state.id,
-      categoryName:
-        this.state.categoryName === "" ? categoryName : this.state.categoryName,
-      categoryImage:
-        this.state.categoryImage === ""
-          ? categoryImage
-          : this.state.categoryImage,
+      category_id:
+        this.state.category_id === "" ? category_id : this.state.category_id,
+      category_name:
+        this.state.category_name === ""
+          ? category_name
+          : this.state.category_name,
+      category_image:
+        this.state.category_image === ""
+          ? category_image
+          : this.state.category_image,
     })
       .then((response) => {
         if (response.code === 200) {
@@ -111,9 +118,9 @@ class CategoryContainer extends Component {
           this.handleShowModalUpdate();
           this.setState({
             ...this.state,
-            id: "",
-            categoryName: "",
-            categoryImage: "",
+            category_id: "",
+            category_name: "",
+            category_image: "",
             isLoaded: !this.state.isLoaded,
           });
         }
@@ -130,7 +137,7 @@ class CategoryContainer extends Component {
     });
   };
 
-  handleDeleteCategory = (id) => {
+  handleDeleteCategory = (category_id) => {
     swal({
       title: "Are you sure?",
       text:
@@ -143,7 +150,7 @@ class CategoryContainer extends Component {
         swal("Poof! Your imaginary file has been deleted!", {
           icon: "success",
         });
-        deleteCategory(id).then((response) => {
+        deleteCategory(category_id).then((response) => {
           if (response.code === 200) {
             swal(
               "Delete Category Success",
@@ -162,23 +169,48 @@ class CategoryContainer extends Component {
     });
   };
 
+  categoryById = (id) => {
+    getCategoryById(id).then((response) => {
+      const data = response.data;
+      this.props.GetCategoryById(data);
+      this.setState({
+        showTableCategoryById: !this.state.showTableCategoryById,
+      });
+    });
+  };
+
+  handleShowTableCategoryById = () => {
+    this.setState({
+      showTableCategoryById: !this.state.showTableCategoryById,
+    });
+  };
+
   render() {
     return (
       <div className="content-wrapper">
-        <CategoryList
-          handleShowModalCreate={this.handleShowModalCreate}
-          handleShowModalUpdate={this.handleShowModalUpdate}
-          handleDeleteCategory={this.handleDeleteCategory}
-          isLoaded={this.state.isLoaded}
-        />
+        {!this.state.showTableCategoryById ? (
+          <CategoryList
+            handleShowModalCreate={this.handleShowModalCreate}
+            handleShowModalUpdate={this.handleShowModalUpdate}
+            handleDeleteCategory={this.handleDeleteCategory}
+            isLoaded={this.state.isLoaded}
+            search={this.state.search}
+            categoryById={this.categoryById}
+            handleChangeInput={this.handleChangeInput}
+          />
+        ) : (
+          <CategoryById
+            handleShowTableCategoryById={this.handleShowTableCategoryById}
+          />
+        )}
         {!this.state.showModalCreate ? null : (
           <CategoryCreate
             show={this.state.showModalCreate}
             onHide={this.handleShowModalCreate}
             handleChangeInput={this.handleChangeInput}
             createNewCategory={this.createNewCategory}
-            categoryName={this.state.categoryName}
-            categoryImage={this.state.categoryImage}
+            category_name={this.state.category_name}
+            category_image={this.state.category_image}
             handleUploadImage={this.handleUploadImage}
           />
         )}
@@ -201,6 +233,8 @@ class CategoryContainer extends Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     GetAllCategory: (data) => dispatch({ type: "GET_CATEGORY", data: data }),
+    GetCategoryById: (data) =>
+      dispatch({ type: "GET_CATEGORY_BY_ID", data: data }),
   };
 };
 

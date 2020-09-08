@@ -4,26 +4,29 @@ import {
   createFeature,
   updateFeature,
   deleteFeature,
+  getFeatureById,
 } from "./FeatureService";
 import { connect } from "react-redux";
 import swal from "sweetalert";
 import FeatureList from "./FeatureList";
 import FeatureCreate from "./FeatureCreate";
 import FeatureUpdate from "./FeatureUpdate";
-import Navbar from "../../../components/Navbar";
+import FeatureById from "./FeatureById";
 
 export class FeatureContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: "",
-      featureName: "",
-      featureDescription: "",
-      featureImage: "",
+      feature_id: "",
+      feature_name: "",
+      feature_description: "",
+      feature_image: "",
       showModalCreate: false,
       showModalUpdate: false,
       isLoaded: false,
       dataFeature: {},
+      showTableFeatureById: false,
+      search: "",
     };
   }
 
@@ -32,7 +35,7 @@ export class FeatureContainer extends Component {
     reader.onload = () => {
       if (reader.readyState === 2) {
         this.setState({
-          featureImage: reader.result,
+          feature_image: reader.result,
         });
       }
     };
@@ -60,15 +63,15 @@ export class FeatureContainer extends Component {
 
   createNewFeature = () => {
     createFeature({
-      featureName: this.state.featureName,
-      featureDescription: this.state.featureDescription,
-      featureImage: this.state.featureImage,
+      feature_name: this.state.feature_name,
+      feature_description: this.state.feature_description,
+      feature_image: this.state.feature_image,
     })
       .then((response) => {
         if (
-          this.state.featureName == "" ||
-          this.state.featureDescription == "" ||
-          this.state.featureImage == ""
+          this.state.feature_name == "" ||
+          this.state.feature_description == "" ||
+          this.state.feature_image == ""
         ) {
           swal("Create New Feature Failed !!!");
         } else if (response.code !== 200) {
@@ -83,9 +86,9 @@ export class FeatureContainer extends Component {
           this.handleShowModalCreate();
           this.setState({
             ...this.state,
-            featureName: "",
-            featureDescription: "",
-            featureImage: "",
+            feature_name: "",
+            feature_description: "",
+            feature_image: "",
             isLoaded: !this.state.isLoaded,
           });
         }
@@ -101,30 +104,37 @@ export class FeatureContainer extends Component {
     });
   };
 
-  updateNewFeature = (id, featureName, featureDescription, featureImage) => {
+  updateNewFeature = (
+    feature_id,
+    feature_name,
+    feature_description,
+    feature_image
+  ) => {
     updateFeature({
-      id: this.state.id === "" ? id : this.state.id,
-      featureName:
-        this.state.featureName === "" ? featureName : this.state.featureName,
-      featureDescription:
-        this.state.featureDescription === ""
-          ? featureDescription
-          : this.state.featureDescription,
-      featureImage:
-        this.state.featureImage === "" ? featureImage : this.state.featureImage,
+      feature_id:
+        this.state.feature_id === "" ? feature_id : this.state.feature_id,
+      feature_name:
+        this.state.feature_name === "" ? feature_name : this.state.feature_name,
+      feature_description:
+        this.state.feature_description === ""
+          ? feature_description
+          : this.state.feature_description,
+      feature_image:
+        this.state.feature_image === ""
+          ? feature_image
+          : this.state.feature_image,
     })
       .then((response) => {
         if (response.code === 200) {
-          console.log(`hasil update`, response);
           swal("Update Feature Success", "You clicked the button!", "success");
           this.loadData();
           this.handleShowModalUpdate();
           this.setState({
             ...this.state,
-            id: "",
-            featureName: "",
-            featureDescription: "",
-            featureImage: "",
+            feature_id: "",
+            feature_name: "",
+            feature_description: "",
+            feature_image: "",
             isLoaded: !this.state.isLoaded,
           });
         }
@@ -141,7 +151,7 @@ export class FeatureContainer extends Component {
     });
   };
 
-  handleDeleteFeature = (id) => {
+  handleDeleteFeature = (feature_id) => {
     swal({
       title: "Are you sure?",
       text:
@@ -154,7 +164,7 @@ export class FeatureContainer extends Component {
         swal("Poof! Your imaginary file has been deleted!", {
           icon: "success",
         });
-        deleteFeature(id).then((response) => {
+        deleteFeature(feature_id).then((response) => {
           if (response.code === 200) {
             swal(
               "Delete Feature Success",
@@ -173,24 +183,49 @@ export class FeatureContainer extends Component {
     });
   };
 
+  featureById = (id) => {
+    getFeatureById(id).then((response) => {
+      const data = response.data;
+      this.props.GetFeatureById(data);
+      this.setState({
+        showTableFeatureById: !this.state.showTableFeatureById,
+      });
+    });
+  };
+
+  handleShowTableFeatureById = () => {
+    this.setState({
+      showTableFeatureById: !this.state.showTableFeatureById,
+    });
+  };
+
   render() {
     return (
       <div className="content-wrapper">
-        <FeatureList
-          handleShowModalCreate={this.handleShowModalCreate}
-          handleShowModalUpdate={this.handleShowModalUpdate}
-          handleDeleteFeature={this.handleDeleteFeature}
-          isLoaded={this.state.isLoaded}
-        />
+        {!this.state.showTableFeatureById ? (
+          <FeatureList
+            handleShowModalCreate={this.handleShowModalCreate}
+            handleShowModalUpdate={this.handleShowModalUpdate}
+            handleDeleteFeature={this.handleDeleteFeature}
+            isLoaded={this.state.isLoaded}
+            search={this.state.search}
+            handleChangeInput={this.handleChangeInput}
+            featureById={this.featureById}
+          />
+        ) : (
+          <FeatureById
+            handleShowTableFeatureById={this.handleShowTableFeatureById}
+          />
+        )}
         {!this.state.showModalCreate ? null : (
           <FeatureCreate
             show={this.state.showModalCreate}
             onHide={this.handleShowModalCreate}
             handleChangeInput={this.handleChangeInput}
             createNewFeature={this.createNewFeature}
-            featureName={this.state.featureName}
-            featureDescription={this.state.featureDescription}
-            featureImage={this.state.featureImage}
+            feature_name={this.state.feature_name}
+            feature_description={this.state.feature_description}
+            feature_image={this.state.feature_image}
             handleUploadImage={this.handleUploadImage}
           />
         )}
@@ -205,8 +240,6 @@ export class FeatureContainer extends Component {
             handleUploadImage={this.handleUploadImage}
           />
         )}
-
-        {/* <Navbar loadDataFeature={this.loadData} /> */}
       </div>
     );
   }
@@ -215,6 +248,8 @@ export class FeatureContainer extends Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     GetAllFeature: (data) => dispatch({ type: "GET_FEATURE", data: data }),
+    GetFeatureById: (data) =>
+      dispatch({ type: "GET_FEATURE_BY_ID", data: data }),
   };
 };
 
