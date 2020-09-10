@@ -3,6 +3,10 @@ import { render } from "@testing-library/react";
 import { shallow } from "enzyme";
 import App from "./App";
 import SignInForm from "./pages/landingPage/signIn/SignInForm";
+import Users from "./redux/reducers/userReducer/Users";
+import Schedule from "./redux/reducers/scheduleReducer/Schedule";
+import Feature from "./redux/reducers/featureReducer/Feature";
+import Category from "./redux/reducers/categoryReducer/Category";
 
 const setup = (props = {}, state = null) => {
   const appComponent = shallow(<App {...props} />);
@@ -65,5 +69,95 @@ describe("<SignInForm />", () => {
       .find(`[data-test="input-password"]`)
       .simulate("Change", event);
     expect(handleChange).toHaveBeenCalledWith("123");
+  });
+});
+
+describe("Users", () => {
+  it("Should return new state if receiving type", () => {
+    const allUserData = [
+      { username: "Test 1" },
+      { username: "Test 2" },
+      { username: "Test 3" },
+    ];
+
+    const newState = Users(undefined, {
+      type: "GET_USER",
+      data: allUserData,
+    });
+    expect(newState.allUser).toEqual(allUserData);
+  });
+
+  it("Should return new state if receiving type", () => {
+    const adminData = { username: "Admin", password: "123" };
+
+    const newState = Users(undefined, {
+      type: "GET_ADMIN",
+      data: adminData,
+    });
+    expect(newState.admin).toEqual(adminData);
+  });
+
+  it("Should return new state if receiving type", () => {
+    const userByIdData = {
+      username: "Faqih",
+      password: "123",
+      email: "faqihmubarak@gmail.com",
+    };
+
+    const newState = Users(undefined, {
+      type: "GET_USER_BY_ID",
+      data: userByIdData,
+    });
+    expect(newState.userById).toEqual(userByIdData);
+  });
+});
+
+describe("Schedule", () => {
+  it("Should return new state if receiving type", () => {
+    const allScheduleData = [
+      { playerOne: "Andi", playerTwo: "Bowo", location: "Senayan" },
+      { playerOne: "Intan", playerTwo: "Seila", location: "Gor Bekasi" },
+    ];
+
+    const newState = Schedule(undefined, {
+      type: "GET_SCHEDULE",
+      data: allScheduleData,
+    });
+    expect(newState.allSchedule).toEqual(allScheduleData);
+  });
+});
+
+describe("Feature", () => {
+  it("Should return new state if receiving type", () => {
+    const allFeatureData = [
+      { nameFeature: "Chatting", descriptionFeature: "Feature chatting" },
+      {
+        nameFeature: "Find Opponent",
+        descriptionFeature: "Feature Find Opponent",
+      },
+    ];
+
+    const newState = Feature(undefined, {
+      type: "GET_FEATURE",
+      data: allFeatureData,
+    });
+    expect(newState.allFeature).toEqual(allFeatureData);
+  });
+});
+
+describe("Category", () => {
+  it("Should return new state if receiving type", () => {
+    const allCategoryData = [
+      { nameCategory: "Badminton" },
+      {
+        nameCategory: "Basket",
+      },
+    ];
+
+    const newState = Category(undefined, {
+      type: "GET_CATEGORY",
+      data: allCategoryData,
+    });
+    expect(newState.allCategory).toEqual(allCategoryData);
   });
 });

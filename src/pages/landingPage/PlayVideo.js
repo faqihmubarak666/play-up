@@ -10,7 +10,7 @@ export class PlayVideo extends Component {
         <VideoPlayer
           src={TrailerPlayUp}
           className="video-player"
-          width="1510px"
+          width="1350x"
           height="600px"
         />
         <Footer />

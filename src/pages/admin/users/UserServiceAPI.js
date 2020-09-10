@@ -18,6 +18,8 @@ const getUserById = async (id) => {
   const user = await fetch(baseUrl + `/${id}`, {
     method: "GET",
     headers: {
+      token: sessionStorage.getItem("token"),
+
       Accept: "application/json",
       "Content-Type": "application/json",
     },
