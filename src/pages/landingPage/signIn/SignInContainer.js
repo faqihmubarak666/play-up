@@ -46,7 +46,7 @@ class SignInContainer extends Component {
         password: this.state.password,
       })
         .then((response) => {
-          if (response.data !== null) {
+          if (response.data.token !== undefined) {
             const data = response;
             this.props.GetAdmin(data);
             console.log(response.data.token);
