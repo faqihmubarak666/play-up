@@ -49,7 +49,6 @@ class SignInContainer extends Component {
           if (response.data.token !== undefined) {
             const data = response;
             this.props.GetAdmin(data);
-            console.log(response.data.token);
             sessionStorage.setItem("token", response.data.token);
             this.setState({
               adminPage: !this.state.adminPage,

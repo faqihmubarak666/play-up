@@ -8,13 +8,13 @@ function Footer() {
     <div className="footer-container">
       <section className="footer-subscription">
         <p className="footer-subscription-heading">
-          Join the Adventure newsletter to receive our best vacation deals
+          Play Now And Win Your Match
         </p>
         <p className="footer-subscription-text">
-          You can unsubscribe at any time.
+          Register And Improve Your Skill Now{" "}
         </p>
         <div className="input-areas">
-          <form>
+          {/* <form>
             <input
               className="footer-input"
               name="email"
@@ -22,11 +22,14 @@ function Footer() {
               placeholder="Your Email"
             />
             <Button buttonStyle="btn--outline">Subscribe</Button>
-          </form>
+          </form> */}
         </div>
       </section>
 
-      <section className="social-media">
+      <section
+        className="social-media"
+        style={{ textAlign: "center", marginLeft: "80px" }}
+      >
         <div className="social-media-wrap">
           <div className="footer-logo">
             <Link to="/" className="social-logo">

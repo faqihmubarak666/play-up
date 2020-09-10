@@ -69,7 +69,7 @@ const SideBar = (props) => {
             <div className="user-panel mt-3 pb-3 mb-3 d-flex">
               <div className="image">
                 <img
-                  src={admin.data.photo}
+                  src={admin.data.user.photo}
                   style={{
                     height: "50px",
                     width: "50px",
@@ -88,7 +88,7 @@ const SideBar = (props) => {
                     marginTop: "5px",
                   }}
                 >
-                  {admin.data.user_full_name}
+                  {admin.data.user.user_full_name}
                 </a>
               </div>
             </div>
