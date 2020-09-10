@@ -6,6 +6,7 @@ const getAllUsers = async (page, limit) => {
   const users = await fetch(queryParamns, {
     method: "GET",
     headers: {
+      token: sessionStorage.getItem("token"),
       Accept: "application/json",
       "Content-Type": "application/json",
     },
