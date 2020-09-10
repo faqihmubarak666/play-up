@@ -10,7 +10,7 @@ class ScheduleContainer extends Component {
     super(props);
     this.state = {
       isLoaded: false,
-      page: 0,
+      page: 1,
       limit: 3,
       totalResult: "",
       showTableScheduleById: false,

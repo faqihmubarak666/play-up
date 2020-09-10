@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import Login from "../../../image/undraw_secure_login_pdn4.svg";
@@ -15,7 +14,7 @@ const SignInForm = (props) => {
     getDataAdmin,
   } = props;
   return (
-    <div>
+    <div data-test="component-signin">
       <div className="container-login">
         <Form className="login-form">
           <Container>
@@ -34,6 +33,7 @@ const SignInForm = (props) => {
                     {usernameInvalid ? usernameInvalid : "Username"}
                   </Label>
                   <Input
+                    data-test="input-username"
                     value={username}
                     name="username"
                     type="username"
@@ -50,6 +50,7 @@ const SignInForm = (props) => {
                     {passwordInvalid ? passwordInvalid : "Password"}
                   </Label>
                   <Input
+                    data-test="input-password"
                     value={password}
                     name="password"
                     type="password"

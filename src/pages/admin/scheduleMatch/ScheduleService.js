@@ -1,7 +1,7 @@
 const baseUrl = "/schedule";
 
 const getAllSchedule = async (page, limit) => {
-  const queryParamns = `${baseUrl}/all?page=${page}&limit=${limit}`;
+  const queryParamns = `${baseUrl}/all?page=${page - 1}&limit=${limit}`;
 
   const schedule = await fetch(queryParamns, {
     method: "GET",
