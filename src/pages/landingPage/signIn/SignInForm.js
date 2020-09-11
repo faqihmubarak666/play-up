@@ -65,7 +65,7 @@ const SignInForm = (props) => {
                     onClick={() => getDataAdmin()}
                     style={{ backgroundColor: "#2c3c5b" }}
                   >
-                    Masuk
+                    Login
                   </Button>
                 </Link>
               </Col>

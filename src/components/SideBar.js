@@ -8,6 +8,7 @@ import {
   Link,
   Switch,
   withRouter,
+  Redirect,
 } from "react-router-dom";
 import UserContainer from "../pages/admin/users/UserContainer";
 import Dashboard from "../pages/admin/Dashboard";
@@ -15,6 +16,7 @@ import { connect } from "react-redux";
 import ScheduleContainer from "../pages/admin/scheduleMatch/ScheduleContainer";
 import CategoryContainer from "../pages/admin/category/CategoryContainer";
 import FeatureContainer from "../pages/admin/features/FeatureContainer";
+import Home from "../pages/landingPage/Home";
 
 const SideBar = (props) => {
   const [logoutPage, setLogoutPage] = useState(false);
@@ -32,7 +34,7 @@ const SideBar = (props) => {
           icon: "success",
         });
         setLogoutPage({
-          logoutPage: !logoutPage,
+          logoutPage: true,
         });
         props.history.push({
           pathname: "/",
@@ -174,8 +176,10 @@ const SideBar = (props) => {
                 </li>
 
                 <li className="nav-item has-treeview menu-open">
+                  {/* <Link to="/">
+                    <button> */}
                   <Link
-                    to="/logout"
+                    to="/"
                     className="nav-links"
                     onClick={logout}
                     style={{ color: "white" }}
@@ -186,6 +190,8 @@ const SideBar = (props) => {
                       style={{ marginLeft: "5px", marginTop: "3px" }}
                     ></i>
                   </Link>
+                  {/* </button>
+                  </Link> */}
                 </li>
               </ul>
             </nav>
@@ -199,9 +205,6 @@ const SideBar = (props) => {
           <Route path="/category" component={CategoryContainer} />
         </Switch>
       </BrowserRouter>
-      {/* <div>
-        <Dashboard />
-      </div> */}
     </div>
   );
 };
