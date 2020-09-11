@@ -5,8 +5,7 @@ import SideBar from "../../../components/SideBar";
 import { login } from "./SignInService";
 import SignInForm from "./SignInForm";
 import { connect } from "react-redux";
-import { withRouter, Redirect } from "react-router-dom";
-import { Dashboard } from "../../admin/Dashboard";
+import { withRouter } from "react-router-dom";
 
 class SignInContainer extends Component {
   constructor(props) {
@@ -49,15 +48,17 @@ class SignInContainer extends Component {
           if (response.data.token !== undefined) {
             const data = response;
             this.props.GetAdmin(data);
+            console.log("admin login", data);
             sessionStorage.setItem("token", response.data.token);
-            this.setState({
-              adminPage: !this.state.adminPage,
-              isLoaded: !this.state.isLoaded,
-            });
-
             this.props.history.push({
               pathname: "/admin",
             });
+
+            this.setState({
+              adminPage: true,
+              isLoaded: true,
+            });
+
             swal("Login Success", "You clicked the button!", "success");
           } else {
             swal("Login Invalid", "You clicked the button!", "error");

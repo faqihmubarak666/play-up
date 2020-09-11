@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "../../style/Category.css";
 import "../../style/Footer.css";
-import Badminton from "../../image/category_badminton.jpg";
 import Footer from "../../components/Footer";
 import { connect } from "react-redux";
 

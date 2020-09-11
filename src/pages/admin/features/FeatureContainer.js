@@ -70,9 +70,9 @@ export class FeatureContainer extends Component {
     })
       .then((response) => {
         if (
-          this.state.feature_name == "" ||
-          this.state.feature_description == "" ||
-          this.state.feature_image == ""
+          this.state.feature_name === "" ||
+          this.state.feature_description === "" ||
+          this.state.feature_image === ""
         ) {
           swal("Create New Feature Failed !!!");
         } else if (response.code !== 200) {

@@ -1,7 +1,7 @@
 const baseUrl = "/user";
 
 const getAllUsers = async (page, limit) => {
-  const queryParamns = `${baseUrl}/users?page=${page - 1}&limit=${limit}`;
+  const queryParamns = `${baseUrl}/users?page=${page}&limit=${limit}`;
 
   const users = await fetch(queryParamns, {
     method: "GET",

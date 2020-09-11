@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
 import Table from "react-bootstrap/Table";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";

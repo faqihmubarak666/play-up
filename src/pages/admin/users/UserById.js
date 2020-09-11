@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
 import "../../../style/ListUser.css";
 import Table from "react-bootstrap/Table";
 

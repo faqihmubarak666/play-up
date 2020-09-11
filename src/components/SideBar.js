@@ -48,6 +48,7 @@ const SideBar = (props) => {
   }
 
   const { admin } = props;
+
   return (
     <div>
       <BrowserRouter>
@@ -198,6 +199,9 @@ const SideBar = (props) => {
           <Route path="/category" component={CategoryContainer} />
         </Switch>
       </BrowserRouter>
+      {/* <div>
+        <Dashboard />
+      </div> */}
     </div>
   );
 };
