@@ -2,8 +2,6 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import SideBar from "../components/SideBar";
 import { connect } from "react-redux";
-import { Dashboard } from "./admin/Dashboard";
-import Home from "./landingPage/Home";
 
 const MenuUtama = (props) => {
   const { admin } = props;
@@ -12,12 +10,10 @@ const MenuUtama = (props) => {
       {admin.code === 200 ? (
         <div>
           <SideBar />
-          {/* <Dashboard /> */}
         </div>
       ) : (
         <div>
           <Navbar />
-          {/* <Home /> */}
         </div>
       )}
     </div>

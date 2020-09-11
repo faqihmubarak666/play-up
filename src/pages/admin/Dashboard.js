@@ -11,7 +11,7 @@ export class Dashboard extends Component {
     super(props);
     this.state = {
       page: 1,
-      limit: 1000,
+      limit: 50,
     };
   }
 

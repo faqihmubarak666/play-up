@@ -31,14 +31,17 @@ class SignInContainer extends Component {
         usernameInvalid: "Invalid username",
         passwordInvalid: "Invalid password",
       });
+      swal("Login Invalid", "You clicked the button!", "error");
     } else if (this.state.username === "") {
       this.setState({
         usernameInvalid: "Invalid username",
       });
+      swal("Login Invalid", "You clicked the button!", "error");
     } else if (this.state.password === "") {
       this.setState({
         passwordInvalid: "Invalid password",
       });
+      swal("Login Invalid", "You clicked the button!", "error");
     } else {
       login({
         username: this.state.username,
@@ -48,7 +51,6 @@ class SignInContainer extends Component {
           if (response.data.token !== undefined) {
             const data = response;
             this.props.GetAdmin(data);
-            console.log("admin login", data);
             sessionStorage.setItem("token", response.data.token);
             this.props.history.push({
               pathname: "/admin",
@@ -84,6 +86,7 @@ class SignInContainer extends Component {
           isLoaded={this.state.isLoaded}
           handleChangeInput={this.handleChangeInput}
           getDataAdmin={this.getDataAdmin}
+          adminPage={this.state.adminPage}
         />
       </div>
     );

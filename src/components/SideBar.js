@@ -176,8 +176,6 @@ const SideBar = (props) => {
                 </li>
 
                 <li className="nav-item has-treeview menu-open">
-                  {/* <Link to="/">
-                    <button> */}
                   <Link
                     to="/"
                     className="nav-links"
@@ -190,13 +188,12 @@ const SideBar = (props) => {
                       style={{ marginLeft: "5px", marginTop: "3px" }}
                     ></i>
                   </Link>
-                  {/* </button>
-                  </Link> */}
                 </li>
               </ul>
             </nav>
           </div>
         </aside>
+
         <Switch>
           <Route path="/admin" exact component={Dashboard} />
           <Route path="/all-user" component={UserContainer} />

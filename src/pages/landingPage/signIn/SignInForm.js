@@ -13,6 +13,7 @@ const SignInForm = (props) => {
     passwordInvalid,
     handleChangeInput,
     getDataAdmin,
+    adminPage,
   } = props;
   return (
     <div data-test="component-signin">
@@ -59,6 +60,7 @@ const SignInForm = (props) => {
                     onChange={(event) => handleChangeInput(event)}
                   />
                 </FormGroup>
+
                 <Link to="/admin">
                   <Button
                     className="btn-lg btn-dark btn-block"
