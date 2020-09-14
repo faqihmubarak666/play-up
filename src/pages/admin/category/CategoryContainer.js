@@ -5,6 +5,7 @@ import {
   updateCategory,
   deleteCategory,
   getCategoryById,
+  uploadApiCategory,
 } from "./CategoryService";
 import { connect } from "react-redux";
 import swal from "sweetalert";
@@ -30,16 +31,17 @@ class CategoryContainer extends Component {
     };
   }
 
-  handleUploadImage = (event) => {
-    const reader = new FileReader();
-    reader.onload = () => {
-      if (reader.readyState === 2) {
-        this.setState({
-          category_image: reader.result,
-        });
-      }
-    };
-    reader.readAsDataURL(event.target.files[0]);
+  uploadImage = async (event) => {
+    const files = event.target.files;
+    const data = new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", "playup");
+
+    uploadApiCategory(data).then((res) => {
+      this.setState({
+        category_image: res.secure_url,
+      });
+    });
   };
 
   componentDidMount() {
@@ -55,6 +57,7 @@ class CategoryContainer extends Component {
     getAllCategory().then((response) => {
       const data = response.data;
       this.props.GetAllCategory(data);
+
       this.setState({
         isLoaded: !this.state.isLoaded,
       });
@@ -227,6 +230,7 @@ class CategoryContainer extends Component {
             category_name={this.state.category_name}
             category_image={this.state.category_image}
             handleUploadImage={this.handleUploadImage}
+            uploadImage={this.uploadImage}
           />
         )}
 
@@ -238,6 +242,7 @@ class CategoryContainer extends Component {
             updateNewCategory={this.updateNewCategory}
             dataCategory={this.state.dataCategory}
             handleUploadImage={this.handleUploadImage}
+            uploadImage={this.uploadImage}
           />
         )}
       </div>

@@ -58,10 +58,22 @@ const getCategoryById = async (id) => {
   return await category.json();
 };
 
+const uploadApiCategory = async (data) => {
+  const category = await fetch(
+    `https://api.cloudinary.com/v1_1/druslyvzw/image/upload`,
+    {
+      method: "POST",
+      body: data,
+    }
+  );
+  return await category.json();
+};
+
 export {
   getAllCategory,
   createCategory,
   updateCategory,
   deleteCategory,
   getCategoryById,
+  uploadApiCategory,
 };

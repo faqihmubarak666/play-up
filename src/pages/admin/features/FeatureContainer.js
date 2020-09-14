@@ -5,6 +5,7 @@ import {
   updateFeature,
   deleteFeature,
   getFeatureById,
+  uploadApiFeature,
 } from "./FeatureService";
 import { connect } from "react-redux";
 import swal from "sweetalert";
@@ -31,16 +32,17 @@ export class FeatureContainer extends Component {
     };
   }
 
-  handleUploadImage = (event) => {
-    const reader = new FileReader();
-    reader.onload = () => {
-      if (reader.readyState === 2) {
-        this.setState({
-          feature_image: reader.result,
-        });
-      }
-    };
-    reader.readAsDataURL(event.target.files[0]);
+  uploadImage = async (event) => {
+    const files = event.target.files;
+    const data = new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", "playup");
+
+    uploadApiFeature(data).then((res) => {
+      this.setState({
+        feature_image: res.secure_url,
+      });
+    });
   };
 
   componentDidMount() {
@@ -243,6 +245,7 @@ export class FeatureContainer extends Component {
             feature_description={this.state.feature_description}
             feature_image={this.state.feature_image}
             handleUploadImage={this.handleUploadImage}
+            uploadImage={this.uploadImage}
           />
         )}
 
@@ -254,6 +257,7 @@ export class FeatureContainer extends Component {
             updateNewFeature={this.updateNewFeature}
             dataFeature={this.state.dataFeature}
             handleUploadImage={this.handleUploadImage}
+            uploadImage={this.uploadImage}
           />
         )}
       </div>

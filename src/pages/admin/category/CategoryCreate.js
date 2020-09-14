@@ -10,7 +10,7 @@ const CategoryCreate = (props) => {
     createNewCategory,
     category_name,
     category_image,
-    handleUploadImage,
+    uploadImage,
   } = props;
   return (
     <div>
@@ -45,10 +45,9 @@ const CategoryCreate = (props) => {
               <Form.Label>UPLOAD IMAGE</Form.Label>
               <Form.Control
                 type="file"
-                accept="image"
                 name="category_image"
                 placeholder="Input image category"
-                onChange={(event) => handleUploadImage(event)}
+                onChange={(event) => uploadImage(event)}
               />
             </Form.Group>
           </Form>

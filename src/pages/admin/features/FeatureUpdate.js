@@ -1,7 +1,6 @@
 import React from "react";
 import { Form, Button } from "react-bootstrap";
 import { Modal } from "react-bootstrap/cjs";
-import { updateFeature } from "./FeatureService";
 
 const FeatureUpdate = (props) => {
   const {
@@ -15,7 +14,7 @@ const FeatureUpdate = (props) => {
       feature_description,
       feature_image,
     },
-    handleUploadImage,
+    uploadImage,
   } = props;
   return (
     <div>
@@ -76,11 +75,12 @@ const FeatureUpdate = (props) => {
               />
               <Form.Label>IMAGE FEATURE</Form.Label>
               <Form.Control
+                id="feature_image"
                 type="file"
                 accept="image"
                 name="feature_image"
                 placeholder="Input image feature"
-                onChange={(event) => handleUploadImage(event)}
+                onChange={(event) => uploadImage(event)}
               />
             </Form.Group>
           </Form>

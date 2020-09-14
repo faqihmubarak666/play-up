@@ -11,7 +11,7 @@ const FeatureCreate = (props) => {
     feature_name,
     feature_description,
     feature_image,
-    handleUploadImage,
+    uploadImage,
   } = props;
   return (
     <div>
@@ -62,7 +62,7 @@ const FeatureCreate = (props) => {
                 accept="image"
                 name="feature_image"
                 placeholder="Input image feature"
-                onChange={(event) => handleUploadImage(event)}
+                onChange={(event) => uploadImage(event)}
               />
             </Form.Group>
           </Form>

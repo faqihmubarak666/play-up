@@ -58,10 +58,22 @@ const getFeatureById = async (id) => {
   return await feature.json();
 };
 
+const uploadApiFeature = async (data) => {
+  const feature = await fetch(
+    `https://api.cloudinary.com/v1_1/druslyvzw/image/upload`,
+    {
+      method: "POST",
+      body: data,
+    }
+  );
+  return await feature.json();
+};
+
 export {
   getAllFeature,
   createFeature,
   updateFeature,
   deleteFeature,
   getFeatureById,
+  uploadApiFeature,
 };

@@ -64,10 +64,16 @@ class SignInContainer extends Component {
             swal("Login Success", "You clicked the button!", "success");
           } else {
             swal("Login Invalid", "You clicked the button!", "error");
+            this.props.history.push({
+              pathname: "/sign-in",
+            });
           }
         })
         .catch((err) => {
           swal("Login Invalid", "You clicked the button!", "error");
+          this.props.history.push({
+            pathname: "/sign-in",
+          });
         });
     }
   };
