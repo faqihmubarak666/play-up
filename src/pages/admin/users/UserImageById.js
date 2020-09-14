@@ -32,6 +32,7 @@ const UserImageById = (props) => {
                 marginLeft: "auto",
                 marginRight: "auto",
                 marginTop: "10px",
+                marginBottom: "10px",
               }}
             />
           </Card>

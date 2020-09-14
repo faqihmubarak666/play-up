@@ -17,7 +17,7 @@ const FeatureCreate = (props) => {
     <div>
       <Modal show={show}>
         <Modal.Body>
-          <Modal.Header closeButton>
+          <Modal.Header closeButton onClick={() => onHide()}>
             <Modal.Title id="contained-modal-title-vcenter">
               CREATE NEW FEATURE
             </Modal.Title>
