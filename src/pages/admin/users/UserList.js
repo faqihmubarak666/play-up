@@ -7,7 +7,14 @@ import Loading from "../../../image/animation_500_kesozuti.gif";
 import { Form, FormControl, Button } from "react-bootstrap";
 
 const UserList = (props) => {
-  const { allUser, isLoaded, handleChangeInput, onSearch, inputValue } = props;
+  const {
+    allUser,
+    isLoaded,
+    handleChangeInput,
+    onSearch,
+    inputValue,
+    userImageById,
+  } = props;
   return (
     <div style={{ backgroundColor: "white" }}>
       <Form
@@ -55,7 +62,7 @@ const UserList = (props) => {
               <th>FULL NAME</th>
               <th>GENDER</th>
               <th>EMAIL</th>
-              <th>PHOTO</th>
+              <th>Photo Profile</th>
             </tr>
           </thead>
           <tbody>
@@ -70,15 +77,16 @@ const UserList = (props) => {
                     <td>{data.gender}</td>
                     <td>{data.email}</td>
                     <td>
-                      <img
-                        src={data.photo}
-                        alt="user"
+                      <button
+                        onClick={() => userImageById(data.photo)}
                         style={{
-                          height: "50px",
+                          backgroundColor: "#0ac1a5",
+                          color: "white",
                           width: "50px",
-                          borderRadius: "50px",
                         }}
-                      />
+                      >
+                        Photo
+                      </button>
                     </td>
                   </tr>
                 ))}

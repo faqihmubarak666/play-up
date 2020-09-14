@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { getAllUsers, getUserById } from "./UserServiceAPI";
+import { getAllUsers, getUserById, getUserImageById } from "./UserServiceAPI";
 import { connect } from "react-redux";
 import UserList from "./UserList";
 import UserPagination from "./UserPagination";
 import UserById from "./UserById";
+import UserImageById from "./UserImageById";
 
 class UserContainer extends Component {
   constructor(props) {
@@ -11,6 +12,7 @@ class UserContainer extends Component {
     this.state = {
       isLoaded: false,
       showTableUserById: false,
+      showModalUserImageById: false,
       page: 1,
       limit: 3,
       totalResult: "",
@@ -90,6 +92,23 @@ class UserContainer extends Component {
     });
   };
 
+  userImageById = (image) => {
+    getUserImageById(image).then((response) => {
+      console.log(response);
+      const data = response.url;
+      this.props.GetUserImageById(data);
+      this.setState({
+        showModalUserImageById: !this.state.showModalUserImageById,
+      });
+    });
+  };
+
+  handleShowModalDetail = () => {
+    this.setState({
+      showModalUserImageById: !this.state.showModalUserImageById,
+    });
+  };
+
   render() {
     return (
       <div className="content-wrapper">
@@ -105,6 +124,7 @@ class UserContainer extends Component {
               handleChangeInput={this.handleChangeInput}
               onSearch={this.onSearch}
               inputValue={this.state.inputValue}
+              userImageById={this.userImageById}
             />
             <UserPagination
               onSetLimit={this.onSetLimit}
@@ -118,6 +138,13 @@ class UserContainer extends Component {
           <UserById
             handleShowTableUserById={this.handleShowTableUserById}
             filtered={this.state.filtered}
+          />
+        )}
+
+        {!this.state.showModalUserImageById ? null : (
+          <UserImageById
+            show={this.state.showModalUserImageById}
+            onHide={this.handleShowModalDetail}
           />
         )}
       </div>
@@ -135,6 +162,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     GetAllUser: (data) => dispatch({ type: "GET_USER", data: data }),
     GetUserById: (data) => dispatch({ type: "GET_USER_BY_ID", data: data }),
+    GetUserImageById: (data) =>
+      dispatch({ type: "GET_USER_IMAGE_BY_ID", data: data }),
   };
 };
 

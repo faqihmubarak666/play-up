@@ -27,4 +27,15 @@ const getUserById = async (id) => {
   return await user.json();
 };
 
-export { getAllUsers, getUserById };
+const getUserImageById = async (image) => {
+  const user = await fetch(baseUrl + `/get-image/${image}`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  });
+  return await user;
+};
+
+export { getAllUsers, getUserById, getUserImageById };
