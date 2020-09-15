@@ -29,6 +29,7 @@ export class FeatureContainer extends Component {
       showTableFeatureById: false,
       filtered: [],
       inputValue: "",
+      disabledInput: false,
     };
   }
 
@@ -134,6 +135,7 @@ export class FeatureContainer extends Component {
           swal("Update Feature Success", "You clicked the button!", "success");
           this.loadData();
           this.handleShowModalUpdate();
+          this.handleEditButton();
           this.setState({
             ...this.state,
             feature_id: "",
@@ -218,6 +220,12 @@ export class FeatureContainer extends Component {
     });
   };
 
+  handleEditButton = () => {
+    this.setState({
+      disabledInput: !this.state.disabledInput,
+    });
+  };
+
   render() {
     return (
       <div className="content-wrapper">
@@ -260,6 +268,8 @@ export class FeatureContainer extends Component {
             dataFeature={this.state.dataFeature}
             handleUploadImage={this.handleUploadImage}
             uploadImage={this.uploadImage}
+            handleEditButton={this.handleEditButton}
+            disabledInput={this.state.disabledInput}
           />
         )}
       </div>

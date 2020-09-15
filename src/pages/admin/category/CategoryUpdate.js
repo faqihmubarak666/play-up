@@ -11,6 +11,8 @@ const CategoryUpdate = (props) => {
     updateNewCategory,
     dataCategory: { category_id, category_name, category_image },
     uploadImage,
+    handleEditButton,
+    disabledInput,
   } = props;
   return (
     <div>
@@ -43,6 +45,7 @@ const CategoryUpdate = (props) => {
                 defaultValue={category_name}
                 type="text"
                 name="category_name"
+                disabled={!disabledInput}
                 placeholder="Input name category"
                 onChange={handleChangeInput}
               />
@@ -61,6 +64,7 @@ const CategoryUpdate = (props) => {
                 type="file"
                 name="category_image"
                 accept="image"
+                disabled={!disabledInput}
                 placeholder="Input image category"
                 onChange={(event) => uploadImage(event)}
               />
@@ -68,14 +72,23 @@ const CategoryUpdate = (props) => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button
-            onClick={() =>
-              updateNewCategory(category_id, category_name, category_image)
-            }
-            style={{ backgroundColor: "#0ac1a5" }}
-          >
-            Save
-          </Button>
+          {disabledInput ? (
+            <Button
+              onClick={() =>
+                updateNewCategory(category_id, category_name, category_image)
+              }
+              style={{ backgroundColor: "#0ac1a5" }}
+            >
+              Save
+            </Button>
+          ) : (
+            <Button
+              onClick={() => handleEditButton()}
+              style={{ backgroundColor: "#0ac1a5" }}
+            >
+              Edit
+            </Button>
+          )}
           <Button onClick={onHide} style={{ backgroundColor: "#0ac1a5" }}>
             Cancel
           </Button>

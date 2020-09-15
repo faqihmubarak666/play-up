@@ -28,6 +28,7 @@ class CategoryContainer extends Component {
       showTableCategoryById: false,
       filtered: [],
       inputValue: "",
+      disabledInput: false,
     };
   }
 
@@ -123,6 +124,8 @@ class CategoryContainer extends Component {
           swal("Update Category Success", "You clicked the button!", "success");
           this.loadData();
           this.handleShowModalUpdate();
+          this.handleEditButton();
+
           this.setState({
             ...this.state,
             category_id: "",
@@ -205,6 +208,12 @@ class CategoryContainer extends Component {
     });
   };
 
+  handleEditButton = () => {
+    this.setState({
+      disabledInput: !this.state.disabledInput,
+    });
+  };
+
   render() {
     return (
       <div className="content-wrapper">
@@ -246,6 +255,8 @@ class CategoryContainer extends Component {
             dataCategory={this.state.dataCategory}
             handleUploadImage={this.handleUploadImage}
             uploadImage={this.uploadImage}
+            handleEditButton={this.handleEditButton}
+            disabledInput={this.state.disabledInput}
           />
         )}
       </div>

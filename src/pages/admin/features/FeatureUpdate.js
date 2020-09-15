@@ -16,6 +16,8 @@ const FeatureUpdate = (props) => {
       feature_image,
     },
     uploadImage,
+    handleEditButton,
+    disabledInput,
   } = props;
   return (
     <div>
@@ -48,6 +50,7 @@ const FeatureUpdate = (props) => {
                 defaultValue={feature_name}
                 type="text"
                 name="feature_name"
+                disabled={!disabledInput}
                 placeholder="Input name feature"
                 onChange={handleChangeInput}
               />
@@ -61,6 +64,7 @@ const FeatureUpdate = (props) => {
                 defaultValue={feature_description}
                 type="text"
                 name="feature_description"
+                disabled={!disabledInput}
                 placeholder="Input description feature"
                 onChange={handleChangeInput}
               />
@@ -80,6 +84,7 @@ const FeatureUpdate = (props) => {
                 type="file"
                 accept="image"
                 name="feature_image"
+                disabled={!disabledInput}
                 placeholder="Input image feature"
                 onChange={(event) => uploadImage(event)}
               />
@@ -87,19 +92,29 @@ const FeatureUpdate = (props) => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button
-            onClick={() =>
-              updateNewFeature(
-                feature_id,
-                feature_name,
-                feature_description,
-                feature_image
-              )
-            }
-            style={{ backgroundColor: "#0ac1a5" }}
-          >
-            Save
-          </Button>
+          {disabledInput ? (
+            <Button
+              onClick={() =>
+                updateNewFeature(
+                  feature_id,
+                  feature_name,
+                  feature_description,
+                  feature_image
+                )
+              }
+              style={{ backgroundColor: "#0ac1a5" }}
+            >
+              Save
+            </Button>
+          ) : (
+            <Button
+              onClick={() => handleEditButton()}
+              style={{ backgroundColor: "#0ac1a5" }}
+            >
+              Edit
+            </Button>
+          )}
+
           <Button onClick={onHide} style={{ backgroundColor: "#0ac1a5" }}>
             Cancel
           </Button>

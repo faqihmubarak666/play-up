@@ -72,6 +72,13 @@ const FeatureCreate = (props) => {
           <Button
             onClick={() => createNewFeature()}
             style={{ backgroundColor: "#0ac1a5" }}
+            disabled={
+              feature_name === "" ||
+              feature_description === "" ||
+              feature_image === ""
+                ? true
+                : false
+            }
           >
             Submit
           </Button>

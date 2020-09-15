@@ -57,6 +57,9 @@ const CategoryCreate = (props) => {
           <Button
             onClick={() => createNewCategory()}
             style={{ backgroundColor: "#0ac1a5" }}
+            disabled={
+              category_name === "" || category_image === "" ? true : false
+            }
           >
             Submit
           </Button>
