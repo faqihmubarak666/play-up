@@ -13,7 +13,6 @@ const SignInForm = (props) => {
     passwordInvalid,
     handleChangeInput,
     getDataAdmin,
-    adminPage,
   } = props;
   return (
     <div data-test="component-signin">

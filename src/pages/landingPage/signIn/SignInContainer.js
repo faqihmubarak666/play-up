@@ -58,7 +58,7 @@ class SignInContainer extends Component {
 
             this.setState({
               adminPage: true,
-              isLoaded: true,
+              isLoaded: !this.state.isLoaded,
             });
 
             swal("Login Success", "You clicked the button!", "success");
@@ -89,7 +89,6 @@ class SignInContainer extends Component {
           password={this.state.password}
           usernameInvalid={this.state.usernameInvalid}
           passwordInvalid={this.state.passwordInvalid}
-          isLoaded={this.state.isLoaded}
           handleChangeInput={this.handleChangeInput}
           getDataAdmin={this.getDataAdmin}
           adminPage={this.state.adminPage}

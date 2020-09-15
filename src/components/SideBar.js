@@ -8,7 +8,6 @@ import {
   Link,
   Switch,
   withRouter,
-  Redirect,
 } from "react-router-dom";
 import UserContainer from "../pages/admin/users/UserContainer";
 import Dashboard from "../pages/admin/Dashboard";
@@ -16,7 +15,7 @@ import { connect } from "react-redux";
 import ScheduleContainer from "../pages/admin/scheduleMatch/ScheduleContainer";
 import CategoryContainer from "../pages/admin/category/CategoryContainer";
 import FeatureContainer from "../pages/admin/features/FeatureContainer";
-import Home from "../pages/landingPage/Home";
+import Loading from "../image/animation_500_kesozuti.gif";
 
 const SideBar = (props) => {
   const [logoutPage, setLogoutPage] = useState(false);

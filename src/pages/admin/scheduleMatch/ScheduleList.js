@@ -81,6 +81,7 @@ const ScheduleList = (props) => {
                                 backgroundColor: "Blue",
                                 textTransform: "uppercase",
                                 color: "black",
+                                borderRadius: "50px",
                               }}
                             >
                               ID : {data.schedule_user_id}
@@ -97,6 +98,7 @@ const ScheduleList = (props) => {
                                 backgroundColor: "Red",
                                 textTransform: "uppercase",
                                 color: "black",
+                                borderRadius: "50px",
                               }}
                             >
                               ID : {data.schedule_opponent_id}
