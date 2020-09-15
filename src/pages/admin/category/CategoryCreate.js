@@ -1,6 +1,7 @@
 import React from "react";
 import { Form, Button } from "react-bootstrap";
 import { Modal } from "react-bootstrap/cjs";
+import Loading from "../../../image/animation_500_kesozuti.gif";
 
 const CategoryCreate = (props) => {
   const {
@@ -38,7 +39,7 @@ const CategoryCreate = (props) => {
           <Form>
             <Form.Group controlId="formBookName">
               <img
-                src={category_image}
+                src={category_image ? category_image : Loading}
                 style={{ width: "70px", height: "70px" }}
                 alt="*upload image"
               />

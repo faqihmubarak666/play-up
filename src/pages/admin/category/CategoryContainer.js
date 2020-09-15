@@ -38,8 +38,11 @@ class CategoryContainer extends Component {
     data.append("upload_preset", "playup");
 
     uploadApiCategory(data).then((res) => {
+      this.loadData();
+
       this.setState({
         category_image: res.secure_url,
+        isLoaded: !this.state.isLoaded,
       });
     });
   };

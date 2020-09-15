@@ -39,8 +39,10 @@ export class FeatureContainer extends Component {
     data.append("upload_preset", "playup");
 
     uploadApiFeature(data).then((res) => {
+      this.loadData();
       this.setState({
         feature_image: res.secure_url,
+        isLoaded: !this.state.isLoaded,
       });
     });
   };

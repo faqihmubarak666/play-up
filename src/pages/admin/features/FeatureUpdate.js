@@ -1,6 +1,7 @@
 import React from "react";
 import { Form, Button } from "react-bootstrap";
 import { Modal } from "react-bootstrap/cjs";
+import Loading from "../../../image/animation_500_kesozuti.gif";
 
 const FeatureUpdate = (props) => {
   const {
@@ -69,7 +70,7 @@ const FeatureUpdate = (props) => {
           <Form>
             <Form.Group controlId="formBookName">
               <img
-                src={feature_image}
+                src={feature_image ? feature_image : Loading}
                 style={{ width: "70px", height: "70px" }}
                 alt="*upload image"
               />

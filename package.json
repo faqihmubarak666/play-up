@@ -55,5 +55,5 @@
     "enzyme-adapter-react-16": "^1.15.4",
     "redux-devtools": "^3.6.1"
   },
-  "proxy": "http://ec2-54-85-182-189.compute-1.amazonaws.com:3000"
+  "proxy": "http://34.101.198.49:8085"
 }
