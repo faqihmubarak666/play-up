@@ -3,7 +3,7 @@ import "../../../style/ListUser.css";
 import Table from "react-bootstrap/Table";
 
 const UserById = (props) => {
-  const { handleShowTableUserById, filtered } = props;
+  const { handleShowTableUserById, filtered, userImageById } = props;
   return (
     <div style={{ backgroundColor: "white" }}>
       <button
@@ -34,7 +34,7 @@ const UserById = (props) => {
             <th>FULL NAME</th>
             <th>GENDER</th>
             <th>EMAIL</th>
-            <th>PHOTO</th>
+            <th>PHOTO PROFILE</th>
           </tr>
         </thead>
         <tbody>
@@ -48,15 +48,16 @@ const UserById = (props) => {
                   <td>{data.gender}</td>
                   <td>{data.email}</td>
                   <td>
-                    <img
-                      src={data.photo}
-                      alt="user"
+                    <button
+                      onClick={() => userImageById(data.photo)}
                       style={{
-                        height: "50px",
+                        backgroundColor: "#0ac1a5",
+                        color: "white",
                         width: "50px",
-                        borderRadius: "50px",
                       }}
-                    />
+                    >
+                      Photo
+                    </button>
                   </td>
                 </tr>
               ))}

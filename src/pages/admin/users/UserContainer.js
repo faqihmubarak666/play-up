@@ -137,6 +137,7 @@ class UserContainer extends Component {
         ) : (
           <UserById
             handleShowTableUserById={this.handleShowTableUserById}
+            userImageById={this.userImageById}
             filtered={this.state.filtered}
           />
         )}
