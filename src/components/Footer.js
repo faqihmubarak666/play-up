@@ -28,7 +28,7 @@ function Footer() {
 
       <section
         className="social-media"
-        style={{ textAlign: "center", marginLeft: "80px" }}
+        style={{ textAlign: "center", marginLeft: "90px" }}
       >
         <div className="social-media-wrap">
           <div className="footer-logo">

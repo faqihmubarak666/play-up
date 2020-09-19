@@ -92,6 +92,7 @@ class SignInContainer extends Component {
           handleChangeInput={this.handleChangeInput}
           getDataAdmin={this.getDataAdmin}
           adminPage={this.state.adminPage}
+          isLoaded={this.state.isLoaded}
         />
       </div>
     );
