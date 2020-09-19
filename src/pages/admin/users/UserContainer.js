@@ -116,8 +116,6 @@ class UserContainer extends Component {
           <div>
             <UserList
               isLoaded={this.state.isLoaded}
-              page={this.state.page}
-              limit={this.state.limit}
               handleButton={this.handleButton}
               handleButtonBack={this.handleButtonBack}
               handleButtonNext={this.handleButtonNext}

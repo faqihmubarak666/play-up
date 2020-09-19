@@ -3,11 +3,12 @@ import "../App.css";
 import { Button } from "./Button";
 import "../style/HeroSection.css";
 import { Link } from "react-router-dom";
+import videoOne from "../image/video-1.mp4";
 
 function HeroSection() {
   return (
     <div className="hero-container">
-      <video src="/videos/video-1.mp4" autoPlay loop muted />
+      <video src={videoOne} autoPlay loop muted />
       <h1>FIND OPPONENT</h1>
       <p>
         What are you waiting for ? download the application now to search your
