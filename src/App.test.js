@@ -191,7 +191,7 @@ describe("Category", () => {
 });
 
 describe("UserServiceAPI ", () => {
-  it("API testing", async () => {
+  it("Fetch API testing getAllUsers", async () => {
     fetch.mockResponseOnce(
       JSON.stringify({
         data: [
@@ -210,7 +210,7 @@ describe("UserServiceAPI ", () => {
     });
   });
 
-  it("API testing", async () => {
+  it("Fetch API testing getUserById", async () => {
     fetch.mockResponseOnce(
       JSON.stringify({ id: { username: "Faqih", password: "***" } })
     );
@@ -221,7 +221,7 @@ describe("UserServiceAPI ", () => {
 });
 
 describe("scheduleMatchServiceAPI ", () => {
-  it("API testing", async () => {
+  it("Fetch API testing getAllSchedule", async () => {
     fetch.mockResponseOnce(
       JSON.stringify({
         data: [
@@ -240,7 +240,7 @@ describe("scheduleMatchServiceAPI ", () => {
     });
   });
 
-  it("API testing", async () => {
+  it("Fetch API testing getScheduleById", async () => {
     fetch.mockResponseOnce(
       JSON.stringify({
         id: { playerOne: "Faqih", playerTwo: "joko", at: "Gor Bekasi" },
@@ -255,7 +255,7 @@ describe("scheduleMatchServiceAPI ", () => {
 });
 
 describe("featureServiceAPI ", () => {
-  it("API testing", async () => {
+  it("Fetch API testing getAllFeature", async () => {
     fetch.mockResponseOnce(
       JSON.stringify({
         data: [
@@ -288,7 +288,7 @@ describe("featureServiceAPI ", () => {
 });
 
 describe("categoryServiceAPI ", () => {
-  it("API testing", async () => {
+  it("Fetch API testing getAllCategory", async () => {
     fetch.mockResponseOnce(
       JSON.stringify({
         data: [
@@ -465,6 +465,107 @@ describe("featureServiceAPI ", () => {
     const url = "/feature/delete/id";
     const method = {
       method: "DELETE",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    };
+    expect(fetch).toHaveBeenCalledWith(url, method);
+  });
+});
+
+describe("UserServiceAPI ", () => {
+  it("Path API getAllUsers", async () => {
+    global.fetch = jest.fn(() =>
+      Promise.resolve({
+        json: () => Promise.resolve("data"),
+      })
+    );
+    await getAllUsers("data");
+
+    const url = "/user/users?page=data&limit=undefined";
+    const method = {
+      method: "GET",
+      headers: {
+        token: null,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    };
+    expect(fetch).toHaveBeenCalledWith(url, method);
+  });
+
+  it("Path API getUserById", async () => {
+    global.fetch = jest.fn(() =>
+      Promise.resolve({
+        json: () => Promise.resolve("id"),
+      })
+    );
+    await getUserById("id");
+
+    const url = "/user/id";
+    const method = {
+      method: "GET",
+      headers: {
+        token: null,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    };
+    expect(fetch).toHaveBeenCalledWith(url, method);
+  });
+
+  it("Path API getUserImageById", async () => {
+    global.fetch = jest.fn(() =>
+      Promise.resolve({
+        json: () => Promise.resolve("id"),
+      })
+    );
+    await getUserImageById("id");
+
+    const url = "/user/get-image/id";
+    const method = {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    };
+    expect(fetch).toHaveBeenCalledWith(url, method);
+  });
+});
+
+describe("scheduleMatchServiceAPI ", () => {
+  it("Path API getAllSchedule", async () => {
+    global.fetch = jest.fn(() =>
+      Promise.resolve({
+        json: () => Promise.resolve("data"),
+      })
+    );
+    await getAllSchedule("data");
+
+    const url = "/schedule/all?page=data&limit=undefined";
+    const method = {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    };
+    expect(fetch).toHaveBeenCalledWith(url, method);
+  });
+
+  it("Path API getScheduleById", async () => {
+    global.fetch = jest.fn(() =>
+      Promise.resolve({
+        json: () => Promise.resolve("id"),
+      })
+    );
+    await getScheduleById("id");
+
+    const url = "/schedule/active/id";
+    const method = {
+      method: "GET",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
