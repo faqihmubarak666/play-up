@@ -18,7 +18,12 @@ export class Features extends Component {
                 <p>{data.feature_description}</p>
               </Col>
               <Col>
-                <img src={data.feature_image} alt="fitur chat" />
+                <img
+                  src={data.feature_image}
+                  alt="fitur chat"
+                  height="40"
+                  widht="60"
+                />
               </Col>
             </Row>
           ))}

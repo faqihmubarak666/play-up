@@ -66,6 +66,7 @@ class SignInContainer extends Component {
             swal("Login Invalid", "You clicked the button!", "error");
             this.props.history.push({
               pathname: "/sign-in",
+              // pathname: "/admin",
             });
           }
         })
